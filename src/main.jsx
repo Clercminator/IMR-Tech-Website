@@ -11,7 +11,6 @@ import {
   ClipboardCheck,
   Cloud,
   Cpu,
-  DatabaseZap,
   Factory,
   FileCheck2,
   FileText,
@@ -204,19 +203,30 @@ const content = {
     },
     services: {
       label: "Nuestros servicios",
-      title: "Te ayudamos a llevar la IA a producción.",
+      title: "Tres frentes para que la IA opere en el negocio.",
+      body:
+        "IMR no vende licencias ni workshops sueltos. Entramos donde la IA está trabada: adopción real, pilotos que no escalan y operación con costos/gobierno.",
       tabs: [
         {
-          title: "Adopción de Gemini Enterprise",
-          body: "Cada rol le da un uso distinto a la IA. Nos sentamos con las áreas clave para automatizar tareas repetitivas con sus propios datos, levantar línea base de uso, formar referentes internos y reportar impacto en 90 días.",
+          title: "Adopción operativa de Gemini",
+          body: "Convertimos la licencia en uso por rol. Levantamos línea base, diseñamos casos por área, entrenamos referentes internos y medimos adopción con datos del negocio.",
+          bullets: ["Catálogo de casos por rol", "Talleres con datos reales", "Reporte de adopción e impacto"],
+          image: "/images/image2.png",
+          alt: "Equipo de trabajo adoptando herramientas de IA en una oficina",
         },
         {
-          title: "Pilotos a producción",
-          body: "Convertimos prototipos en agentes operativos conectados a procesos reales, con permisos, observabilidad, criterios de aprobación y documentación para que el negocio pueda usarlos con confianza.",
+          title: "Agentes a producción",
+          body: "Tomamos pilotos, prototipos o ideas priorizadas y los convertimos en agentes conectados a procesos reales, con permisos, aprobaciones humanas, logs y criterios de aceptación.",
+          bullets: ["Arquitectura de integración", "Controles humanos y trazabilidad", "Runbook para operar el agente"],
+          image: "/images/image3.png",
+          alt: "Diseño de flujo para pasar agentes de IA a producción",
         },
         {
-          title: "Operación & costos",
-          body: "Diseñamos tableros, alertas y políticas para controlar consumo, calidad, excepciones y retorno. La IA deja de ser experimento y empieza a operar con gobierno.",
+          title: "Gobierno, costos y mejora",
+          body: "Diseñamos la capa de operación: tableros, alertas, FinOps, revisión de excepciones y backlog de mejora. La IA deja de ser experimento y empieza a administrarse.",
+          bullets: ["Control de consumo y calidad", "Alertas y revisión de excepciones", "Backlog mensual de mejora"],
+          image: "/images/image1.png",
+          alt: "Visualización de datos para operación, costos y gobierno de IA",
         },
       ],
     },
@@ -243,15 +253,16 @@ const content = {
       ],
     },
     proof: {
-      title: "Probablemente estás comparando opciones. Acá lo concreto.",
-      body: "Tabla comparativa entre los caminos más frecuentes que evalúan los clientes.",
+      title: "Por qué trabajar con IMR Tech cambia el resultado.",
+      body: "La ventaja no es solo técnica. Es tener un equipo que conecta adopción, arquitectura, operación y métricas en un solo camino a producción.",
       columns: ["Equipo interno", "Implementación generalista", "IMR Tech"],
       rows: [
-        ["Expertise real en Gemini Enterprise", "A veces", "Variable", "A veces"],
-        ["Acceso a fondos de subsidio Google", "No", "No", "A veces"],
-        ["Gobernanza y cumplimiento local", "Parcial", "Fuera de foco", "Variable"],
-        ["Implementación y operación 100% local", "Parcial", "Limitada", "Sí"],
-        ["Equipo senior en AI aplicado", "Parcial", "Parcial", "Sí"],
+        ["Del diagnóstico a producción", "Depende de capacidad interna", "Suele cerrar en recomendaciones", "Diseño, build, despliegue y operación"],
+        ["Adopción real por área", "Fragmentada por equipo", "Capacitación genérica", "Casos por rol, referentes y medición de uso"],
+        ["Arquitectura y seguridad", "Puede faltar experiencia específica", "Variable según proveedor", "Controles humanos, trazabilidad y gobierno desde el diseño"],
+        ["Costos y FinOps", "Difícil de monitorear al inicio", "A menudo fuera de alcance", "Tableros, alertas y políticas de consumo"],
+        ["Continuidad operacional", "Compite con prioridades internas", "Traspaso parcial", "Runbooks, seguimiento y mejora mensual"],
+        ["Stack Google/NVIDIA", "Curva de aprendizaje", "No siempre especializado", "Fluidez técnica para elegir el stack correcto"],
       ],
     },
     founder: {
@@ -369,6 +380,31 @@ const content = {
           question: "¿Por dónde empezamos si ya compramos Gemini Enterprise?",
           answer:
             "Con una línea base de uso, selección de procesos repetitivos de alto impacto y una ruta de adopción por área, no con un manual genérico.",
+        },
+        {
+          question: "¿Bajo qué marcos de seguridad construyen los agentes?",
+          answer:
+            "Usamos como referencia prácticas de Google Cloud, controles de identidad y acceso, trazabilidad de acciones, revisión humana y principios de frameworks como NIST AI RMF, OWASP para LLMs e ISO/IEC 42001 cuando aplica al caso.",
+        },
+        {
+          question: "¿Cómo se conectan con la Ley 21.663 y la Ley 21.719?",
+          answer:
+            "Tu equipo legal interpreta la norma. Nosotros producimos evidencia técnica: arquitectura, trazabilidad, residencia de datos, controles de acceso y registro de decisiones para apoyar la revisión de ciberseguridad y protección de datos.",
+        },
+        {
+          question: "¿Qué pasa si ya tenemos agentes construidos por otro proveedor?",
+          answer:
+            "Podemos partir desde lo existente. Inventariamos agentes, evaluamos observabilidad, riesgos, costos y dependencias, y proponemos un plan de operación o mejora sin reescribir lo que ya funciona.",
+        },
+        {
+          question: "¿Cómo es el modelo contractual y qué pasa si decidimos salir?",
+          answer:
+            "Trabajamos por fases con puntos de decisión claros. Los entregables, propiedad intelectual, condiciones de salida y responsabilidades quedan definidos antes de iniciar, sin letra chica.",
+        },
+        {
+          question: "¿Necesitamos compartir datos sensibles para empezar?",
+          answer:
+            "No para el diagnóstico. Para implementación definimos ambientes, permisos y muestras de datos según el caso. La regla es mínimo acceso necesario y controles explícitos antes de conectar sistemas productivos.",
         },
       ],
     },
@@ -547,19 +583,30 @@ const content = {
     },
     services: {
       label: "Our services",
-      title: "We help you move AI into production.",
+      title: "Three workstreams to make AI operate in the business.",
+      body:
+        "IMR does not sell licenses or isolated workshops. We enter where AI gets stuck: real adoption, pilots that do not scale, and operation with cost/governance control.",
       tabs: [
         {
-          title: "Gemini Enterprise adoption",
-          body: "Every role uses AI differently. We work with key areas to automate repetitive tasks with their own data, establish usage baselines, train internal champions, and report impact within 90 days.",
+          title: "Operational Gemini adoption",
+          body: "We turn the license into role-based usage. We establish a baseline, design use cases by area, train internal champions, and measure adoption with business data.",
+          bullets: ["Use-case catalog by role", "Workshops with real data", "Adoption and impact report"],
+          image: "/images/image2.png",
+          alt: "Business team adopting AI tools in an office",
         },
         {
-          title: "Pilots to production",
-          body: "We turn prototypes into operational agents connected to real processes, with permissions, observability, approval criteria, and documentation so teams can use them with confidence.",
+          title: "Agents to production",
+          body: "We take pilots, prototypes, or prioritized ideas and turn them into agents connected to real processes, with permissions, human approvals, logs, and acceptance criteria.",
+          bullets: ["Integration architecture", "Human controls and traceability", "Runbook to operate the agent"],
+          image: "/images/image3.png",
+          alt: "Workflow design for moving AI agents into production",
         },
         {
-          title: "Operations & costs",
-          body: "We design dashboards, alerts, and policies to control consumption, quality, exceptions, and ROI. AI stops being an experiment and starts operating with governance.",
+          title: "Governance, costs and improvement",
+          body: "We design the operating layer: dashboards, alerts, FinOps, exception review, and the improvement backlog. AI stops being an experiment and starts being managed.",
+          bullets: ["Consumption and quality control", "Alerts and exception review", "Monthly improvement backlog"],
+          image: "/images/image1.png",
+          alt: "Data visualization for AI operations, costs and governance",
         },
       ],
     },
@@ -586,15 +633,16 @@ const content = {
       ],
     },
     proof: {
-      title: "You are probably comparing options. Here is the concrete view.",
-      body: "A practical comparison between common paths companies evaluate.",
+      title: "Why working with IMR Tech changes the outcome.",
+      body: "The advantage is not only technical. It is having one team connect adoption, architecture, operations, and metrics into a single path to production.",
       columns: ["Internal team", "Generalist implementation", "IMR Tech"],
       rows: [
-        ["Real Gemini Enterprise expertise", "Sometimes", "Variable", "Sometimes"],
-        ["Access to Google subsidy funds", "No", "No", "Sometimes"],
-        ["Local governance and compliance", "Partial", "Out of scope", "Variable"],
-        ["100% local implementation and operation", "Partial", "Limited", "Yes"],
-        ["Senior applied AI team", "Partial", "Partial", "Yes"],
+        ["From diagnostic to production", "Depends on internal bandwidth", "Often ends in recommendations", "Design, build, deployment and operation"],
+        ["Real adoption by area", "Fragmented by team", "Generic enablement", "Role-based cases, champions and usage measurement"],
+        ["Architecture and security", "Specific experience may be missing", "Varies by provider", "Human controls, traceability and governance by design"],
+        ["Costs and FinOps", "Hard to monitor early", "Often out of scope", "Dashboards, alerts and consumption policies"],
+        ["Operational continuity", "Competes with internal priorities", "Partial handoff", "Runbooks, follow-up and monthly improvement"],
+        ["Google/NVIDIA stack", "Learning curve", "Not always specialized", "Technical fluency to choose the right stack"],
       ],
     },
     founder: {
@@ -712,6 +760,31 @@ const content = {
           question: "Where should we start if we already bought Gemini Enterprise?",
           answer:
             "Start with a usage baseline, high-impact repetitive processes, and an adoption route by area rather than a generic manual.",
+        },
+        {
+          question: "What security frameworks guide the agents?",
+          answer:
+            "We use Google Cloud practices, identity and access controls, action traceability, human review, and principles from frameworks such as NIST AI RMF, OWASP for LLMs, and ISO/IEC 42001 when relevant to the use case.",
+        },
+        {
+          question: "How does this connect with Chilean cybersecurity and data protection laws?",
+          answer:
+            "Your legal team interprets the regulation. We produce the technical evidence: architecture, traceability, data residency, access controls, and decision logs to support cybersecurity and data-protection review.",
+        },
+        {
+          question: "What if another provider already built our agents?",
+          answer:
+            "We can start from what exists. We inventory agents, assess observability, risks, costs, and dependencies, then propose an operating or improvement plan without rewriting what already works.",
+        },
+        {
+          question: "How does the contract work and what happens if we exit?",
+          answer:
+            "We work in phases with clear decision points. Deliverables, intellectual property, exit terms, and responsibilities are defined before starting, without fine print.",
+        },
+        {
+          question: "Do we need to share sensitive data to start?",
+          answer:
+            "Not for the diagnostic. For implementation, we define environments, permissions, and data samples according to the use case. The rule is minimum necessary access and explicit controls before connecting production systems.",
         },
       ],
     },
@@ -867,7 +940,7 @@ function updateSeo(language, path, t) {
     "@type": "Organization",
     name: "IMR Tech",
     url: SITE_URL,
-    logo: `${SITE_URL}/favicon.svg`,
+    logo: `${SITE_URL}/images/logo%20v1.jpg`,
     sameAs: [LINKEDIN_URL],
     description,
     areaServed: language === "es" ? "Latinoamérica" : "Latin America",
@@ -890,9 +963,7 @@ function Header({ t, language, isMenuOpen, setIsMenuOpen, toggleLanguage, naviga
         event.preventDefault();
         navigate("/");
       }}>
-        <span className="brand-mark" aria-hidden="true">
-          <DatabaseZap size={22} />
-        </span>
+        <img className="brand-logo" src="/images/logo%20v1.jpg" alt="" aria-hidden="true" />
         <span>IMR Tech</span>
       </a>
 
@@ -1111,7 +1182,7 @@ function Services({ t, activeService, setActiveService }) {
   const service = t.services.tabs[activeService];
   return (
     <section className="section-shell services" id="services">
-      <SectionIntro label={t.services.label} title={t.services.title} />
+      <SectionIntro label={t.services.label} title={t.services.title} body={t.services.body} />
       <div className="service-tabs" role="tablist" aria-label={t.services.title}>
         {t.services.tabs.map((tab, index) => (
           <button
@@ -1131,12 +1202,20 @@ function Services({ t, activeService, setActiveService }) {
         <div>
           <h3>{service.title}</h3>
           <p>{service.body}</p>
+          <ul className="service-bullets">
+            {service.bullets.map((bullet) => (
+              <li key={bullet}>
+                <CheckCircle2 size={17} />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
           <a className="text-link" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
             {t.nav.schedule}
             <ArrowRight size={17} />
           </a>
         </div>
-        <img src="/images/ai-adoption-workshop.jpg" alt="AI adoption workshop with business team" />
+        <img src={service.image} alt={service.alt} />
       </article>
     </section>
   );
@@ -1208,7 +1287,10 @@ function ProofTable({ t }) {
                 <tr key={row[0]}>
                   <th scope="row">{row[0]}</th>
                   {row.slice(1).map((cell, index) => (
-                    <td key={`${row[0]}-${index}`}>{cell}</td>
+                    <td className={index === 2 ? "imr-cell" : ""} key={`${row[0]}-${index}`}>
+                      {index === 2 ? <CheckCircle2 size={17} /> : null}
+                      <span>{cell}</span>
+                    </td>
                   ))}
                 </tr>
               ))}
@@ -1517,9 +1599,7 @@ function Footer({ t, navigate }) {
   return (
     <footer className="footer">
       <div className="brand">
-        <span className="brand-mark" aria-hidden="true">
-          <DatabaseZap size={20} />
-        </span>
+        <img className="brand-logo" src="/images/logo%20v1.jpg" alt="" aria-hidden="true" />
         <span>IMR Tech</span>
       </div>
       <div className="footer-links">
