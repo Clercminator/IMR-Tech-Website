@@ -61,20 +61,25 @@ const content = {
       outcome:
         "Después de la sesión recibes un mapa de oportunidades priorizado, una estimación inicial de esfuerzo/impacto y los próximos pasos para llevar un caso real a producción.",
       details: ["FP&A", "Logística", "RR.HH.", "TI", "Customer success", "Legal"],
+      assurances: [
+        "Arquitectura agnóstica al proveedor",
+        "Modelos abiertos o locales cuando conviene",
+        "Seguridad, auditoría y control humano",
+      ],
     },
     trust: {
       label: "Confianza operativa",
-      title: "Construimos sobre tecnologías líderes, sin convertir tu operación en un experimento.",
+      title: "Elegimos el stack que conviene al negocio, no al proveedor.",
       body:
-        "IMR Tech usa ecosistemas de Google Cloud, Gemini Enterprise y NVIDIA para diseñar agentes seguros, observables y listos para escalar. No afirmamos una alianza comercial si no aplica: lo relevante es que el stack y el método estén preparados para producción.",
+        "IMR Tech puede trabajar con nubes públicas, modelos comerciales, modelos open-source e infraestructura local. La decisión depende de datos, seguridad, costo, latencia y operación, no de una alianza exclusiva.",
       items: [
         {
-          title: "Stack Google Cloud",
-          body: "Arquitecturas con identidad, datos, modelos y monitoreo pensados para empresas que necesitan control y trazabilidad.",
+          title: "Proveedor correcto para cada caso",
+          body: "Diseñamos sobre Google Cloud, Azure, AWS, servicios SaaS o infraestructura propia cuando el caso lo requiere.",
         },
         {
-          title: "Ecosistema NVIDIA",
-          body: "Uso de herramientas y prácticas del ecosistema NVIDIA cuando el caso requiere aceleración, inferencia o flujos de IA más exigentes.",
+          title: "Modelos abiertos y despliegue local",
+          body: "Cuando seguridad, costos o residencia de datos lo justifican, priorizamos modelos open-source, inferencia local y uso eficiente de infraestructura existente.",
         },
         {
           title: "Gobierno humano",
@@ -119,7 +124,7 @@ const content = {
       phases: [
         {
           title: "1. Diagnóstico",
-          timeline: "45 min + revisión inicial",
+          timeline: "30 min + revisión inicial",
           deliverable: "Mapa de oportunidades y priorización esfuerzo/impacto.",
           clientNeeds: "Acceso a líderes del proceso y contexto del dolor actual.",
         },
@@ -188,6 +193,18 @@ const content = {
     framework: {
       title: "Dejar de improvisar. Empezar a operar.",
       body: "La diferencia entre un piloto abandonado y un agente que genera valor está en la arquitectura, el gobierno y la adopción detrás de la solución.",
+      manifesto: {
+        lead:
+          "La IA no falla por falta de capacidad. Falla cuando se introduce en sistemas ",
+        muted: "no diseñados para absorberla.",
+        body:
+          "En entornos regulados, la adopción de IA no es un problema de poder computacional, sino de fricción sistémica. La mayoría de los fracasos ocurren en la última milla: la integración.",
+        quote: "La integridad estructural no es algo que se agregue al final.",
+        paragraphs: [
+          "No construimos cajas negras. Diseñamos arquitectura para que la IA opere con transparencia, auditabilidad y supervisión humana efectiva. Entendemos que la tecnología debe servir al juicio humano, no reemplazarlo a ciegas.",
+          "Construimos sistemas resilientes capaces de adaptarse a regulaciones cambiantes sin sacrificar velocidad de innovación.",
+        ],
+      },
       traditional: "Enfoque tradicional",
       imr: "Framework IMR",
       traditionalItems: [
@@ -196,7 +213,7 @@ const content = {
         "Modelos genéricos sin seguridad ni contexto del negocio.",
       ],
       imrItems: [
-        "Transición ordenada hacia infraestructura cloud escalable.",
+        "Transición ordenada hacia infraestructura cloud, local o híbrida.",
         "Guardrails de presupuesto, uso y autorización humana.",
         "Seguridad, trazabilidad y cumplimiento desde el diseño.",
       ],
@@ -205,11 +222,11 @@ const content = {
       label: "Nuestros servicios",
       title: "Tres frentes para que la IA opere en el negocio.",
       body:
-        "IMR no vende licencias ni workshops sueltos. Entramos donde la IA está trabada: adopción real, pilotos que no escalan y operación con costos/gobierno.",
+        "IMR no vende licencias ni workshops sueltos. Entramos donde la IA está trabada: adopción real, pilotos que no escalan y operación con arquitectura, costos y gobierno.",
       tabs: [
         {
-          title: "Adopción operativa de Gemini",
-          body: "Convertimos la licencia en uso por rol. Levantamos línea base, diseñamos casos por área, entrenamos referentes internos y medimos adopción con datos del negocio.",
+          title: "Adopción operativa de IA",
+          body: "Convertimos herramientas de IA en uso por rol. Levantamos línea base, diseñamos casos por área, entrenamos referentes internos y medimos adopción con datos del negocio.",
           bullets: ["Catálogo de casos por rol", "Talleres con datos reales", "Reporte de adopción e impacto"],
           image: "/images/image2.png",
           alt: "Equipo de trabajo adoptando herramientas de IA en una oficina",
@@ -223,7 +240,7 @@ const content = {
         },
         {
           title: "Gobierno, costos y mejora",
-          body: "Diseñamos la capa de operación: tableros, alertas, FinOps, revisión de excepciones y backlog de mejora. La IA deja de ser experimento y empieza a administrarse.",
+          body: "Diseñamos la capa de operación: tableros, alertas, FinOps, revisión de excepciones y backlog de mejora. La IA deja de ser experimento y empieza a administrarse en el stack correcto.",
           bullets: ["Control de consumo y calidad", "Alertas y revisión de excepciones", "Backlog mensual de mejora"],
           image: "/images/image1.png",
           alt: "Visualización de datos para operación, costos y gobierno de IA",
@@ -239,8 +256,8 @@ const content = {
           body: "Diseñamos agentes que trabajan, no presentaciones bonitas. Cada iniciativa nace desde un proceso concreto y una métrica de negocio.",
         },
         {
-          title: "Parte del proyecto lo financia Google.",
-          body: "Te ayudamos a capturar programas de apoyo cuando aplican, para reducir fricción y acelerar la adopción.",
+          title: "Buscamos subsidios e incentivos cuando aplican.",
+          body: "Evaluamos programas de apoyo de proveedores o ecosistemas tecnológicos para reducir fricción sin amarrar la arquitectura a un solo camino.",
         },
         {
           title: "La calidad del equipo no queda en la venta.",
@@ -262,7 +279,7 @@ const content = {
         ["Arquitectura y seguridad", "Puede faltar experiencia específica", "Variable según proveedor", "Controles humanos, trazabilidad y gobierno desde el diseño"],
         ["Costos y FinOps", "Difícil de monitorear al inicio", "A menudo fuera de alcance", "Tableros, alertas y políticas de consumo"],
         ["Continuidad operacional", "Compite con prioridades internas", "Traspaso parcial", "Runbooks, seguimiento y mejora mensual"],
-        ["Stack Google/NVIDIA", "Curva de aprendizaje", "No siempre especializado", "Fluidez técnica para elegir el stack correcto"],
+        ["Stack abierto, cloud o local", "Curva de aprendizaje", "No siempre especializado", "Fluidez técnica para elegir proveedor, modelo e infraestructura"],
       ],
     },
     founder: {
@@ -343,7 +360,7 @@ const content = {
         {
           title: "Tecnologías mencionadas",
           body:
-            "Las referencias a Google Cloud, Gemini Enterprise y NVIDIA describen tecnologías y ecosistemas que IMR Tech puede utilizar. No implican una relación comercial oficial salvo que se indique expresamente.",
+            "Las referencias a proveedores, nubes, modelos comerciales, modelos open-source o infraestructura local describen tecnologías que IMR Tech puede utilizar según el caso. No implican una relación comercial oficial salvo que se indique expresamente.",
         },
         {
           title: "Propiedad intelectual",
@@ -377,14 +394,14 @@ const content = {
             "Medimos tiempo ahorrado, reducción de errores, adopción por rol, costos de operación, volumen procesado y calidad de las decisiones escaladas a humanos.",
         },
         {
-          question: "¿Por dónde empezamos si ya compramos Gemini Enterprise?",
+          question: "¿Por dónde empezamos si ya compramos licencias de IA?",
           answer:
-            "Con una línea base de uso, selección de procesos repetitivos de alto impacto y una ruta de adopción por área, no con un manual genérico.",
+            "Con una línea base de uso, selección de procesos repetitivos de alto impacto y una ruta de adopción por área. Puede ser Gemini, Copilot, ChatGPT Enterprise u otra herramienta; el punto es convertir licencia en operación.",
         },
         {
           question: "¿Bajo qué marcos de seguridad construyen los agentes?",
           answer:
-            "Usamos como referencia prácticas de Google Cloud, controles de identidad y acceso, trazabilidad de acciones, revisión humana y principios de frameworks como NIST AI RMF, OWASP para LLMs e ISO/IEC 42001 cuando aplica al caso.",
+            "Usamos como referencia buenas prácticas de cloud, identidad y acceso, trazabilidad de acciones, revisión humana y principios de frameworks como NIST AI RMF, OWASP para LLMs e ISO/IEC 42001 cuando aplica al caso.",
         },
         {
           question: "¿Cómo se conectan con la Ley 21.663 y la Ley 21.719?",
@@ -435,26 +452,31 @@ const content = {
       body: "We help SMBs implement AI agents that improve administrative, financial, operational, and commercial workflows with human control, security, and measurable outcomes.",
       primary: "Schedule diagnostic",
       secondary: "Talk on WhatsApp",
-      proof: "45-minute initial diagnostic",
+      proof: "30-minute initial diagnostic",
       audience:
         "For CEOs, CFOs, COOs, and area leaders who already use AI or have frozen pilots, but still do not see measurable operational impact.",
       outcome:
         "After the session you receive a prioritized opportunity map, an initial effort/impact estimate, and next steps to move one real use case into production.",
       details: ["FP&A", "Logistics", "HR", "IT", "Customer success", "Legal"],
+      assurances: [
+        "Provider-agnostic architecture",
+        "Open-source or local models when useful",
+        "Security, auditability and human oversight",
+      ],
     },
     trust: {
       label: "Operational trust",
-      title: "We build on leading technologies without turning your operation into an experiment.",
+      title: "We choose the stack that fits the business, not the vendor.",
       body:
-        "IMR Tech uses Google Cloud, Gemini Enterprise, and NVIDIA ecosystem technologies to design secure, observable agents that can scale. We do not claim a commercial partnership unless it applies: what matters is that the stack and method are production-ready.",
+        "IMR Tech can work with public cloud, commercial models, open-source models, and local infrastructure. The decision depends on data, security, cost, latency, and operations, not on an exclusive partnership.",
       items: [
         {
-          title: "Google Cloud stack",
-          body: "Architectures with identity, data, models, and monitoring designed for companies that need control and traceability.",
+          title: "The right provider for each case",
+          body: "We design on Google Cloud, Azure, AWS, SaaS platforms, or owned infrastructure when the use case requires it.",
         },
         {
-          title: "NVIDIA ecosystem",
-          body: "Use of NVIDIA ecosystem tools and practices when a use case requires acceleration, inference, or more demanding AI workflows.",
+          title: "Open models and local deployment",
+          body: "When security, cost, or data residency justify it, we prioritize open-source models, local inference, and efficient use of existing infrastructure.",
         },
         {
           title: "Human governance",
@@ -499,7 +521,7 @@ const content = {
       phases: [
         {
           title: "1. Diagnostic",
-          timeline: "45 min + initial review",
+          timeline: "30 min + initial review",
           deliverable: "Opportunity map and effort/impact prioritization.",
           clientNeeds: "Access to process leaders and context around the current pain.",
         },
@@ -568,6 +590,18 @@ const content = {
     framework: {
       title: "Stop improvising. Start operating.",
       body: "The difference between an abandoned pilot and a value-generating agent is the architecture, governance, and adoption model behind it.",
+      manifesto: {
+        lead:
+          "AI doesn't fail from lack of capability. It fails when introduced into systems ",
+        muted: "not designed to absorb it.",
+        body:
+          "In regulated environments, AI adoption isn't a computing power problem, but one of systemic friction. Most failures occur in the last mile: integration.",
+        quote: "Structural integrity is not an afterthought.",
+        paragraphs: [
+          "We don't build black boxes. We design architecture that allows AI to operate with transparency, auditability, and effective human oversight. We understand that technology must serve human judgment, not blindly replace it.",
+          "We build resilient systems capable of adapting to changing regulations without sacrificing innovation speed.",
+        ],
+      },
       traditional: "Traditional approach",
       imr: "IMR framework",
       traditionalItems: [
@@ -576,7 +610,7 @@ const content = {
         "Generic models without security or business context.",
       ],
       imrItems: [
-        "Structured path to scalable cloud infrastructure.",
+        "Structured path to cloud, local, or hybrid infrastructure.",
         "Budget, usage, and human-authorization guardrails.",
         "Security, traceability, and compliance by design.",
       ],
@@ -585,11 +619,11 @@ const content = {
       label: "Our services",
       title: "Three workstreams to make AI operate in the business.",
       body:
-        "IMR does not sell licenses or isolated workshops. We enter where AI gets stuck: real adoption, pilots that do not scale, and operation with cost/governance control.",
+        "IMR does not sell licenses or isolated workshops. We enter where AI gets stuck: real adoption, pilots that do not scale, and operation with architecture, cost, and governance control.",
       tabs: [
         {
-          title: "Operational Gemini adoption",
-          body: "We turn the license into role-based usage. We establish a baseline, design use cases by area, train internal champions, and measure adoption with business data.",
+          title: "Operational AI adoption",
+          body: "We turn AI tools into role-based usage. We establish a baseline, design use cases by area, train internal champions, and measure adoption with business data.",
           bullets: ["Use-case catalog by role", "Workshops with real data", "Adoption and impact report"],
           image: "/images/image2.png",
           alt: "Business team adopting AI tools in an office",
@@ -603,7 +637,7 @@ const content = {
         },
         {
           title: "Governance, costs and improvement",
-          body: "We design the operating layer: dashboards, alerts, FinOps, exception review, and the improvement backlog. AI stops being an experiment and starts being managed.",
+          body: "We design the operating layer: dashboards, alerts, FinOps, exception review, and the improvement backlog. AI stops being an experiment and starts being managed on the right stack.",
           bullets: ["Consumption and quality control", "Alerts and exception review", "Monthly improvement backlog"],
           image: "/images/image1.png",
           alt: "Data visualization for AI operations, costs and governance",
@@ -619,8 +653,8 @@ const content = {
           body: "We design agents that work, not pretty decks. Every initiative starts from a real process and a business metric.",
         },
         {
-          title: "Part of the project may be funded by Google.",
-          body: "We help you capture support programs when they apply, reducing friction and accelerating adoption.",
+          title: "We look for subsidies and incentives when they apply.",
+          body: "We evaluate support programs from providers or technology ecosystems to reduce friction without locking the architecture into one path.",
         },
         {
           title: "The senior team stays after the sale.",
@@ -642,7 +676,7 @@ const content = {
         ["Architecture and security", "Specific experience may be missing", "Varies by provider", "Human controls, traceability and governance by design"],
         ["Costs and FinOps", "Hard to monitor early", "Often out of scope", "Dashboards, alerts and consumption policies"],
         ["Operational continuity", "Competes with internal priorities", "Partial handoff", "Runbooks, follow-up and monthly improvement"],
-        ["Google/NVIDIA stack", "Learning curve", "Not always specialized", "Technical fluency to choose the right stack"],
+        ["Open, cloud, or local stack", "Learning curve", "Not always specialized", "Technical fluency to choose provider, model, and infrastructure"],
       ],
     },
     founder: {
@@ -723,7 +757,7 @@ const content = {
         {
           title: "Technologies mentioned",
           body:
-            "References to Google Cloud, Gemini Enterprise, and NVIDIA describe technologies and ecosystems IMR Tech may use. They do not imply an official commercial relationship unless expressly stated.",
+            "References to vendors, clouds, commercial models, open-source models, or local infrastructure describe technologies IMR Tech may use depending on the case. They do not imply an official commercial relationship unless expressly stated.",
         },
         {
           title: "Intellectual property",
@@ -757,14 +791,14 @@ const content = {
             "We measure time saved, error reduction, adoption by role, operating costs, processed volume, and the quality of decisions escalated to humans.",
         },
         {
-          question: "Where should we start if we already bought Gemini Enterprise?",
+          question: "Where should we start if we already bought AI licenses?",
           answer:
-            "Start with a usage baseline, high-impact repetitive processes, and an adoption route by area rather than a generic manual.",
+            "Start with a usage baseline, high-impact repetitive processes, and an adoption route by area. It may be Gemini, Copilot, ChatGPT Enterprise, or another tool; the point is turning licenses into operation.",
         },
         {
           question: "What security frameworks guide the agents?",
           answer:
-            "We use Google Cloud practices, identity and access controls, action traceability, human review, and principles from frameworks such as NIST AI RMF, OWASP for LLMs, and ISO/IEC 42001 when relevant to the use case.",
+            "We use cloud, identity, and access-control practices, action traceability, human review, and principles from frameworks such as NIST AI RMF, OWASP for LLMs, and ISO/IEC 42001 when relevant to the use case.",
         },
         {
           question: "How does this connect with Chilean cybersecurity and data protection laws?",
@@ -944,7 +978,13 @@ function updateSeo(language, path, t) {
     sameAs: [LINKEDIN_URL],
     description,
     areaServed: language === "es" ? "Latinoamérica" : "Latin America",
-    knowsAbout: ["AI implementation", "Google Cloud", "Gemini Enterprise", "NVIDIA", "Process automation"],
+    knowsAbout: [
+      "AI implementation",
+      "Agentic AI",
+      "Open-source AI models",
+      "Local AI deployment",
+      "Process automation",
+    ],
   });
 }
 
@@ -1042,6 +1082,14 @@ function Hero({ t }) {
             <MessageCircle size={18} />
             {t.hero.secondary}
           </a>
+        </div>
+        <div className="hero-assurance" aria-label="Implementation principles">
+          {t.hero.assurances.map((assurance) => (
+            <span key={assurance}>
+              <CheckCircle2 size={15} />
+              {assurance}
+            </span>
+          ))}
         </div>
         <div className="hero-tags" aria-label="Service areas">
           {t.hero.details.map((detail) => (
@@ -1154,6 +1202,17 @@ function Framework({ t }) {
           <ComparisonCard title={t.framework.traditional} items={t.framework.traditionalItems} />
           <ComparisonCard title={t.framework.imr} items={t.framework.imrItems} featured />
         </div>
+        <article className="framework-manifesto">
+          <h3>
+            {t.framework.manifesto.lead}
+            <span>{t.framework.manifesto.muted}</span>
+          </h3>
+          <p>{t.framework.manifesto.body}</p>
+          <strong>{t.framework.manifesto.quote}</strong>
+          {t.framework.manifesto.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </article>
       </div>
     </section>
   );
