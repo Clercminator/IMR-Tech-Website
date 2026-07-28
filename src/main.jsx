@@ -289,7 +289,7 @@ const content = {
     },
     contact: {
       title: "El primer paso es identificar qué está fallando.",
-      body: "Cuéntanos dónde está trabada la IA en tu empresa. Guardaremos tu solicitud y te mostraremos los próximos pasos para agendar o continuar por WhatsApp.",
+      body: "Cuéntanos dónde está trabada la IA en tu empresa, aunque no calce perfecto en una categoría. Guardaremos tu solicitud y te mostraremos los próximos pasos para agendar o continuar por WhatsApp.",
       fields: {
         firstName: "Nombre",
         lastName: "Apellido",
@@ -301,7 +301,21 @@ const content = {
       },
       options: {
         size: ["1-50 empleados", "51-200 empleados", "201+ empleados"],
-        pain: ["Licencias subutilizadas", "Pilotos estancados", "Costos descontrolados", "Otro"],
+        pain: [
+          "Datos dispersos o poco confiables",
+          "Procesos manuales repetitivos",
+          "Reportes lentos o poco accionables",
+          "Pilotos estancados",
+          "Integraciones difíciles con sistemas actuales",
+          "Riesgos de seguridad, privacidad o auditoría",
+          "Costos de IA o APIs descontrolados",
+          "Licencias de IA subutilizadas",
+          "Problemas en logística u operaciones",
+          "Soporte interno o customer success saturado",
+          "Necesitamos modelos locales u open-source",
+          "No sé cómo clasificarlo todavía",
+          "Otro problema raro o difícil de explicar",
+        ],
       },
       submit: "Enviar solicitud",
       schedule: "Agendar diagnóstico",
@@ -686,7 +700,7 @@ const content = {
     },
     contact: {
       title: "The first step is identifying what is stuck.",
-      body: "Tell us where AI is blocked in your company. We will save your request and show the next steps to schedule or continue on WhatsApp.",
+      body: "Tell us where AI is blocked in your company, even if it does not fit neatly into a category. We will save your request and show the next steps to schedule or continue on WhatsApp.",
       fields: {
         firstName: "First name",
         lastName: "Last name",
@@ -698,7 +712,21 @@ const content = {
       },
       options: {
         size: ["1-50 employees", "51-200 employees", "201+ employees"],
-        pain: ["Underused licenses", "Stalled pilots", "Uncontrolled costs", "Other"],
+        pain: [
+          "Scattered or unreliable data",
+          "Repetitive manual processes",
+          "Slow or non-actionable reporting",
+          "Stalled pilots",
+          "Hard integrations with current systems",
+          "Security, privacy, or auditability risk",
+          "Uncontrolled AI or API costs",
+          "Underused AI licenses",
+          "Logistics or operations problems",
+          "Internal support or customer success overload",
+          "We need local or open-source models",
+          "I am not sure how to classify it yet",
+          "Other weird or hard-to-explain problem",
+        ],
       },
       submit: "Send request",
       schedule: "Schedule diagnostic",
@@ -1387,6 +1415,12 @@ function Founder({ t }) {
 }
 
 function LeadForm({ t, language }) {
+  const [formStartedAt] = useState(() => Date.now());
+  const [submissionToken] = useState(() => {
+    const randomValue =
+      globalThis.crypto?.randomUUID?.() || Math.random().toString(36).slice(2);
+    return `imr-${Date.now()}-${randomValue}`;
+  });
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -1435,6 +1469,8 @@ function LeadForm({ t, language }) {
           language,
           source: window.location.href,
           summary: leadSummary,
+          formStartedAt,
+          submissionToken,
         }),
       });
 
@@ -1483,6 +1519,7 @@ function LeadForm({ t, language }) {
             value={form.firstName}
             onChange={updateField}
             autoComplete="given-name"
+            maxLength={80}
             required
           />
           <FormField
@@ -1491,6 +1528,7 @@ function LeadForm({ t, language }) {
             value={form.lastName}
             onChange={updateField}
             autoComplete="family-name"
+            maxLength={80}
             required
           />
           <FormField
@@ -1500,6 +1538,7 @@ function LeadForm({ t, language }) {
             value={form.email}
             onChange={updateField}
             autoComplete="email"
+            maxLength={254}
             required
           />
           <FormField
@@ -1509,6 +1548,7 @@ function LeadForm({ t, language }) {
             value={form.phone}
             onChange={updateField}
             autoComplete="tel"
+            maxLength={40}
             required
           />
           <SelectField
@@ -1535,6 +1575,7 @@ function LeadForm({ t, language }) {
               autoComplete="off"
               value={form.companyWebsite}
               onChange={updateField}
+              maxLength={120}
             />
           </label>
           <label className="field full-span">
@@ -1544,6 +1585,7 @@ function LeadForm({ t, language }) {
               value={form.message}
               onChange={updateField}
               rows={4}
+              maxLength={2000}
               dir={language === "es" ? "ltr" : undefined}
             />
           </label>
