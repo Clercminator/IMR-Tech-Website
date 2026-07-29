@@ -21,9 +21,11 @@ import {
   Loader2,
   Menu,
   MessageCircle,
+  Moon,
   Send,
   ShieldCheck,
   Sparkles,
+  Sun,
   Users,
   X,
 } from "lucide-react";
@@ -49,6 +51,8 @@ const content = {
       menu: "Abrir menú",
       close: "Cerrar menú",
       language: "English",
+      darkTheme: "Tema oscuro",
+      lightTheme: "Tema claro",
     },
     hero: {
       title: "Llevemos tu IA del piloto a producción real.",
@@ -92,27 +96,34 @@ const content = {
       title: "Proyectos reales, resultados contables sin exponer a los clientes.",
       body:
         "Por confidencialidad no nombramos empresas. Sí podemos describir el tipo de problema, el enfoque y el resultado operacional conseguido.",
+      solutionLabel: "Solución real",
       items: [
         {
           sector: "Retail óptico",
-          title: "Forecast y abastecimiento por sucursal",
-          result: "Menos quiebres y mejor lectura de demanda por tienda.",
+          title: "Agente de atención, pedidos y recordatorios",
+          solution:
+            "Agente de customer success para responder consultas, tomar pedidos, enviar recordatorios y escalar excepciones al equipo comercial.",
+          result: "Atención más consistente, pedidos mejor capturados y seguimiento automático.",
           body:
-            "Se ordenaron datos comerciales y de inventario para anticipar necesidades de reposición, priorizar excepciones y entregar al equipo una vista accionable de demanda.",
+            "Se conectó la capa conversacional con reglas comerciales y flujos operativos para que la IA dejara de ser solo soporte informativo y empezara a mover tareas reales.",
         },
         {
-          sector: "Servicios funerarios",
-          title: "Automatización de back-office documental",
-          result: "Menos retrabajo manual y seguimiento más claro.",
+          sector: "Empresa de servicios multi-sucursal",
+          title: "Agente de ticketing para soporte TI",
+          solution:
+            "Sistema de tickets con agente de IA que transforma problemas reportados por usuarios en tickets estructurados y resuelve automáticamente casos repetitivos cuando tiene suficiente contexto.",
+          result: "Tickets creados con más contexto y resolución automática de solicitudes frecuentes.",
           body:
-            "Se diseñó un flujo asistido para clasificar solicitudes, extraer información de documentos y preparar respuestas o tareas con revisión humana.",
+            "Se diseñó un flujo asistido para clasificar solicitudes, pedir información faltante, documentar el problema y derivar solo lo que realmente requiere intervención humana.",
         },
         {
-          sector: "Agroindustria y distribución",
-          title: "Control operacional y reporting ejecutivo",
-          result: "Reportes más rápidos y decisiones con mejor contexto.",
+          sector: "Laboratorio farmacéutico",
+          title: "Planificación automática de pallets",
+          solution:
+            "Automatización para planificar pallets combinando restricciones de despacho, volumen, prioridades y reglas operativas del laboratorio.",
+          result: "Planificación más rápida, menos ajuste manual y mejor coordinación operacional.",
           body:
-            "Se conectaron fuentes dispersas para generar reportes de gestión, alertas tempranas y análisis de desviaciones en procesos operativos.",
+            "Se conectaron datos operativos y reglas de negocio para generar planes accionables, reducir fricción entre áreas y acelerar decisiones de distribución.",
         },
       ],
     },
@@ -460,6 +471,8 @@ const content = {
       menu: "Open menu",
       close: "Close menu",
       language: "Español",
+      darkTheme: "Dark theme",
+      lightTheme: "Light theme",
     },
     hero: {
       title: "Move AI from pilot projects to real production.",
@@ -503,27 +516,34 @@ const content = {
       title: "Real projects and measurable outcomes without exposing clients.",
       body:
         "Because of confidentiality, we do not name companies. We can describe the problem type, the approach, and the operational outcome.",
+      solutionLabel: "Actual solution",
       items: [
         {
           sector: "Optical retail",
-          title: "Branch-level forecasting and replenishment",
-          result: "Fewer stockouts and better demand visibility by store.",
+          title: "Customer support, orders, and reminders agent",
+          solution:
+            "Customer success AI agent that answers support questions, takes orders, sends reminders, and escalates exceptions to the commercial team.",
+          result: "More consistent support, better order capture, and automated follow-up.",
           body:
-            "Commercial and inventory data were organized to anticipate replenishment needs, prioritize exceptions, and give the team an actionable demand view.",
+            "The conversational layer was connected to commercial rules and operating workflows so AI could move real tasks instead of only answering informational questions.",
         },
         {
-          sector: "Funeral services",
-          title: "Document back-office automation",
-          result: "Less manual rework and clearer follow-up.",
+          sector: "Multi-site services company",
+          title: "IT support ticketing agent",
+          solution:
+            "Ticketing system with an AI agent that turns user-reported problems into structured tickets and automatically resolves repetitive cases when it has enough context.",
+          result: "Tickets created with better context and frequent requests resolved automatically.",
           body:
-            "An assisted flow classified requests, extracted information from documents, and prepared responses or tasks with human review.",
+            "An assisted flow classified requests, asked for missing information, documented the issue, and routed only the cases that truly required human intervention.",
         },
         {
-          sector: "Agribusiness and distribution",
-          title: "Operational control and executive reporting",
-          result: "Faster reporting and decisions with better context.",
+          sector: "Pharmaceutical laboratory",
+          title: "Automated pallet planning",
+          solution:
+            "Automation for pallet planning using dispatch constraints, volume, priorities, and the lab's operating rules.",
+          result: "Faster planning, less manual adjustment, and better operational coordination.",
           body:
-            "Dispersed sources were connected to generate management reports, early alerts, and deviation analysis for operational processes.",
+            "Operational data and business rules were connected to generate actionable plans, reduce friction between areas, and accelerate distribution decisions.",
         },
       ],
     },
@@ -873,8 +893,15 @@ function resolveInitialLanguage() {
   return languages.some((language) => language?.toLowerCase().startsWith("es")) ? "es" : "en";
 }
 
+function resolveInitialTheme() {
+  const saved = window.localStorage.getItem("imr-theme");
+  if (saved === "light" || saved === "dark") return saved;
+  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 function App() {
   const [language, setLanguage] = useState(resolveInitialLanguage);
+  const [theme, setTheme] = useState(resolveInitialTheme);
   const [path, setPath] = useState(window.location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeService, setActiveService] = useState(0);
@@ -887,6 +914,12 @@ function App() {
     window.localStorage.setItem("imr-language", language);
     updateSeo(language, path, t);
   }, [language, t.metaTitle]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    window.localStorage.setItem("imr-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const onPopState = () => setPath(window.location.pathname);
@@ -910,6 +943,11 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  const toggleTheme = () => {
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+    setIsMenuOpen(false);
+  };
+
   const isLegalRoute = path === "/privacy" || path === "/legal";
 
   return (
@@ -920,6 +958,8 @@ function App() {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         toggleLanguage={toggleLanguage}
+        theme={theme}
+        toggleTheme={toggleTheme}
         navigate={navigate}
       />
       <main>
@@ -1016,7 +1056,16 @@ function updateSeo(language, path, t) {
   });
 }
 
-function Header({ t, language, isMenuOpen, setIsMenuOpen, toggleLanguage, navigate }) {
+function Header({
+  t,
+  language,
+  isMenuOpen,
+  setIsMenuOpen,
+  toggleLanguage,
+  theme,
+  toggleTheme,
+  navigate,
+}) {
   const navLinks = [
     [t.nav.solutions, "#solutions"],
     [t.nav.cases, "#cases"],
@@ -1046,6 +1095,15 @@ function Header({ t, language, isMenuOpen, setIsMenuOpen, toggleLanguage, naviga
       </nav>
 
       <div className="header-actions">
+        <button
+          className="theme-button"
+          type="button"
+          onClick={toggleTheme}
+          aria-label={theme === "dark" ? t.nav.lightTheme : t.nav.darkTheme}
+          title={theme === "dark" ? t.nav.lightTheme : t.nav.darkTheme}
+        >
+          {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+        </button>
         <button className="language-button" type="button" onClick={toggleLanguage}>
           <Languages size={16} />
           <span>{t.nav.language}</span>
@@ -1079,6 +1137,10 @@ function Header({ t, language, isMenuOpen, setIsMenuOpen, toggleLanguage, naviga
         <button type="button" onClick={toggleLanguage}>
           <Globe2 size={16} />
           <span>{language === "es" ? "English" : "Español"}</span>
+        </button>
+        <button type="button" onClick={toggleTheme}>
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          <span>{theme === "dark" ? t.nav.lightTheme : t.nav.darkTheme}</span>
         </button>
       </div>
     </header>
@@ -1213,6 +1275,10 @@ function CaseStudies({ t }) {
             <span>{item.sector}</span>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
+            <div className="case-solution">
+              <span>{t.caseStudies.solutionLabel}</span>
+              <p>{item.solution}</p>
+            </div>
             <strong>{item.result}</strong>
           </article>
         ))}
