@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import {
   ArrowRight,
   BarChart3,
@@ -30,11 +30,22 @@ import {
   X,
 } from "lucide-react";
 import "./styles.css";
+import {
+  SITE_URL,
+  getAlternatePath,
+  getCasePage,
+  getLanguageFromPath,
+  getPageByPath,
+  getRelatedPages,
+  getRouteSeo,
+  getServicePage,
+  normalizePath,
+  sitePages,
+} from "./site-pages";
 
 const SCHEDULE_URL = "https://calendar.app.google/MbgLStQBeqJT3MYy5";
 const WHATSAPP_URL = "https://wa.me/message/JDI5GLAII5DCG1";
 const LINKEDIN_URL = "https://www.linkedin.com/company/clerc-limited";
-const SITE_URL = "https://imrtech.xyz";
 
 const content = {
   es: {
@@ -906,6 +917,7 @@ const whyIcons = [Handshake, Sparkles, ClipboardCheck, Globe2];
 const trustIcons = [Cloud, Cpu, ShieldCheck];
 
 function resolveInitialLanguage() {
+  if (typeof window === "undefined") return "es";
   const saved = window.localStorage.getItem("imr-language");
   if (saved === "en" || saved === "es") return saved;
 
@@ -916,53 +928,75 @@ function resolveInitialLanguage() {
 }
 
 function resolveInitialTheme() {
+  if (typeof window === "undefined") return "light";
   const saved = window.localStorage.getItem("imr-theme");
   if (saved === "light" || saved === "dark") return saved;
   return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
-function App() {
-  const [language, setLanguage] = useState(resolveInitialLanguage);
-  const [theme, setTheme] = useState(resolveInitialTheme);
-  const [path, setPath] = useState(window.location.pathname);
+function getLegalType(path) {
+  const normalized = normalizePath(path);
+  if (normalized === "/es/privacidad/" || normalized === "/en/privacy/") return "privacy";
+  if (normalized === "/es/legal/" || normalized === "/en/legal/") return "legal";
+  return null;
+}
+
+export function App({ initialPath, initialLanguage }) {
+  const browserPath = typeof window === "undefined" ? "/es/" : window.location.pathname;
+  const startingPath = normalizePath(initialPath || browserPath);
+  const [language, setLanguage] = useState(
+    initialLanguage || getLanguageFromPath(startingPath) || resolveInitialLanguage,
+  );
+  const [theme, setTheme] = useState("light");
+  const [isThemeReady, setIsThemeReady] = useState(false);
+  const [path, setPath] = useState(startingPath);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeService, setActiveService] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
   const t = content[language];
+  const page = getPageByPath(path);
+  const legalType = getLegalType(path);
+  const homePath = language === "es" ? "/es/" : "/en/";
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = t.metaTitle;
     window.localStorage.setItem("imr-language", language);
-    updateSeo(language, path, t);
-  }, [language, t.metaTitle]);
+    updateSeo(path, language);
+  }, [language, path]);
 
   useEffect(() => {
+    setTheme(resolveInitialTheme());
+    setIsThemeReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isThemeReady) return;
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
     window.localStorage.setItem("imr-theme", theme);
-  }, [theme]);
+  }, [isThemeReady, theme]);
 
   useEffect(() => {
-    const onPopState = () => setPath(window.location.pathname);
+    const onPopState = () => {
+      const nextPath = normalizePath(window.location.pathname);
+      setPath(nextPath);
+      setLanguage(getLanguageFromPath(nextPath) || resolveInitialLanguage());
+    };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  useEffect(() => {
-    updateSeo(language, path, t);
-  }, [language, path, t]);
-
   const navigate = (nextPath) => {
-    window.history.pushState({}, "", nextPath);
-    setPath(nextPath);
+    const normalized = normalizePath(nextPath);
+    window.history.pushState({}, "", normalized);
+    setPath(normalized);
+    setLanguage(getLanguageFromPath(normalized) || language);
     setIsMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const toggleLanguage = () => {
-    setLanguage((current) => (current === "es" ? "en" : "es"));
-    setIsMenuOpen(false);
+    window.location.assign(getAlternatePath(path));
   };
 
   const toggleTheme = () => {
@@ -970,13 +1004,14 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  const isLegalRoute = path === "/privacy" || path === "/legal";
-
   return (
     <>
+      <StructuredData language={language} path={path} t={t} page={page} />
       <Header
         t={t}
         language={language}
+        currentPath={path}
+        homePath={homePath}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         toggleLanguage={toggleLanguage}
@@ -985,21 +1020,25 @@ function App() {
         navigate={navigate}
       />
       <main>
-        {isLegalRoute ? (
-          <LegalPage t={t} type={path === "/privacy" ? "privacy" : "legal"} navigate={navigate} />
+        {legalType ? (
+          <LegalPage t={t} type={legalType} homePath={homePath} navigate={navigate} />
+        ) : page ? (
+          <ContentPage page={page} t={t} />
         ) : (
           <>
             <Hero t={t} />
             <TrustProof t={t} />
             <UseCases t={t} />
-            <CaseStudies t={t} />
+            <CaseStudies t={t} language={language} />
             <Framework t={t} />
             <HowWeWork t={t} />
             <Services
               t={t}
+              language={language}
               activeService={activeService}
               setActiveService={setActiveService}
             />
+            <ExplorePages language={language} />
             <WhyUs t={t} />
             <ProofTable t={t} />
             <Founder t={t} />
@@ -1008,7 +1047,7 @@ function App() {
           </>
         )}
       </main>
-      <Footer t={t} navigate={navigate} />
+      <Footer t={t} language={language} navigate={navigate} />
     </>
   );
 }
@@ -1028,20 +1067,26 @@ function ensureCanonical(url) {
   canonical.href = url;
 }
 
-function updateSeo(language, path, t) {
-  const canonical = `${SITE_URL}${path === "/" ? "/" : path}`;
-  const title =
-    path === "/privacy"
-      ? `${t.legal.privacyTitle} | IMR Tech`
-      : path === "/legal"
-        ? `${t.legal.legalTitle} | IMR Tech`
-        : t.metaTitle;
-  const description = path === "/"
-    ? t.hero.body
-    : `${t.metaTitle}. ${t.hero.outcome}`;
+function ensureAlternateLink(hreflang, href) {
+  let link = document.head.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`);
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "alternate";
+    link.hreflang = hreflang;
+    document.head.appendChild(link);
+  }
+  link.href = href;
+}
+
+function updateSeo(path, language) {
+  const seo = getRouteSeo(path, language);
+  const { canonical, title, description } = seo;
 
   document.title = title;
   ensureCanonical(canonical);
+  ensureAlternateLink(language, canonical);
+  ensureAlternateLink(language === "es" ? "en" : "es", seo.alternate);
+  ensureAlternateLink("x-default", `${SITE_URL}/es/`);
   updateMeta("meta[name='description']", "content", description);
   updateMeta("meta[property='og:title']", "content", title);
   updateMeta("meta[property='og:description']", "content", description);
@@ -1050,69 +1095,151 @@ function updateSeo(language, path, t) {
   updateMeta("meta[name='twitter:title']", "content", title);
   updateMeta("meta[name='twitter:description']", "content", description);
   updateMeta("meta[name='twitter:image']", "content", `${SITE_URL}/images/hero-ai-implementation.jpg`);
+}
 
-  let structuredData = document.getElementById("structured-data");
-  if (!structuredData) {
-    structuredData = document.createElement("script");
-    structuredData.type = "application/ld+json";
-    structuredData.id = "structured-data";
-    document.head.appendChild(structuredData);
+function buildBreadcrumbs(path, language, title) {
+  const homeName = language === "es" ? "Inicio" : "Home";
+  const homePath = language === "es" ? "/es/" : "/en/";
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: homeName,
+      item: `${SITE_URL}${homePath}`,
+    },
+  ];
+  if (path !== homePath) {
+    items.push({
+      "@type": "ListItem",
+      position: 2,
+      name: title,
+      item: `${SITE_URL}${path}`,
+    });
+  }
+  return items;
+}
+
+function StructuredData({ language, path, t, page }) {
+  const seo = getRouteSeo(path, language);
+  const faqItems = page?.faqs || (!page && !getLegalType(path) ? t.faq.items.map((item) => [item.question, item.answer]) : []);
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "IMR Tech",
+      legalName: "IMR TECH SpA",
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/logo%20v1.jpg`,
+      sameAs: [LINKEDIN_URL],
+      description: seo.description,
+      areaServed: [
+        { "@type": "Country", name: language === "es" ? "Chile" : "Chile" },
+        { "@type": "Place", name: language === "es" ? "Latinoamérica" : "Latin America" },
+      ],
+      knowsAbout: [
+        "AI implementation",
+        "Agentic AI",
+        "Open-source AI models",
+        "Local AI deployment",
+        "Process automation",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "IMR Tech",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      inLanguage: ["es", "en"],
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${seo.canonical}#webpage`,
+      url: seo.canonical,
+      name: seo.title,
+      description: seo.description,
+      inLanguage: language,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: buildBreadcrumbs(seo.path, language, page?.title || seo.title),
+    },
+  ];
+
+  if (page) {
+    graph.push(
+      page.kind === "case"
+        ? {
+            "@type": "Article",
+            headline: page.title,
+            description: page.description,
+            inLanguage: language,
+            mainEntityOfPage: { "@id": `${seo.canonical}#webpage` },
+            author: { "@id": `${SITE_URL}/#organization` },
+            publisher: { "@id": `${SITE_URL}/#organization` },
+          }
+        : {
+            "@type": "Service",
+            name: page.title,
+            description: page.description,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: { "@type": "Country", name: "Chile" },
+            availableChannel: {
+              "@type": "ServiceChannel",
+              serviceUrl: seo.canonical,
+              availableLanguage: ["Spanish", "English"],
+            },
+          },
+    );
   }
 
-  structuredData.textContent = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "IMR Tech",
-    url: SITE_URL,
-    logo: `${SITE_URL}/images/logo%20v1.jpg`,
-    sameAs: [LINKEDIN_URL],
-    description,
-    areaServed: language === "es" ? "Latinoamérica" : "Latin America",
-    knowsAbout: [
-      "AI implementation",
-      "Agentic AI",
-      "Open-source AI models",
-      "Local AI deployment",
-      "Process automation",
-    ],
-  });
+  if (faqItems.length) {
+    graph.push({
+      "@type": "FAQPage",
+      mainEntity: faqItems.map(([question, answer]) => ({
+        "@type": "Question",
+        name: question,
+        acceptedAnswer: { "@type": "Answer", text: answer },
+      })),
+    });
+  }
+
+  const data = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
+  return <script id="structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: data }} />;
 }
 
 function Header({
   t,
   language,
+  currentPath,
+  homePath,
   isMenuOpen,
   setIsMenuOpen,
   toggleLanguage,
   theme,
   toggleTheme,
-  navigate,
 }) {
+  const onHome = normalizePath(currentPath) === homePath;
   const navLinks = [
-    [t.nav.solutions, "#solutions"],
-    [t.nav.cases, "#cases"],
-    [t.nav.how, "#how-we-work"],
-    [t.nav.services, "#services"],
-    [t.nav.contact, "#contact"],
+    [t.nav.solutions, `${onHome ? "" : homePath}#solutions`],
+    [t.nav.cases, `${onHome ? "" : homePath}#cases`],
+    [t.nav.how, `${onHome ? "" : homePath}#how-we-work`],
+    [t.nav.services, `${onHome ? "" : homePath}#services`],
+    [t.nav.contact, `${onHome ? "" : homePath}#contact`],
   ];
 
   return (
     <header className="site-header">
-      <a className="brand" href="/" aria-label="IMR Tech home" onClick={(event) => {
-        event.preventDefault();
-        navigate("/");
-      }}>
-        <img className="brand-logo" src="/images/logo%20v1.jpg" alt="" aria-hidden="true" />
+      <a className="brand" href={homePath} aria-label="IMR Tech home">
+        <img className="brand-logo" src="/favicon.svg" alt="" aria-hidden="true" />
         <span>IMR Tech</span>
       </a>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
         {navLinks.map(([label, href]) => (
-          <a key={href} href={href} onClick={() => {
-            if (window.location.pathname !== "/") navigate("/");
-          }}>
-            {label}
-          </a>
+          <a key={href} href={href}>{label}</a>
         ))}
       </nav>
 
@@ -1283,7 +1410,7 @@ function UseCases({ t }) {
   );
 }
 
-function CaseStudies({ t }) {
+function CaseStudies({ t, language }) {
   return (
     <section className="section-shell case-studies" id="cases">
       <SectionIntro
@@ -1292,7 +1419,9 @@ function CaseStudies({ t }) {
         body={t.caseStudies.body}
       />
       <div className="case-grid">
-        {t.caseStudies.items.map((item) => (
+        {t.caseStudies.items.map((item, index) => {
+          const casePage = getCasePage(language, index);
+          return (
           <article className="case-card" key={item.title}>
             <span>{item.sector}</span>
             <h3>{item.title}</h3>
@@ -1316,8 +1445,15 @@ function CaseStudies({ t }) {
                 <dd>{item.metric}</dd>
               </div>
             </dl>
+            {casePage ? (
+              <a className="text-link" href={casePage.path}>
+                {language === "es" ? "Leer caso completo" : "Read the full case"}
+                <ArrowRight size={17} />
+              </a>
+            ) : null}
           </article>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -1367,8 +1503,9 @@ function ComparisonCard({ title, items, featured = false }) {
   );
 }
 
-function Services({ t, activeService, setActiveService }) {
+function Services({ t, language, activeService, setActiveService }) {
   const service = t.services.tabs[activeService];
+  const servicePage = getServicePage(language, activeService);
   return (
     <section className="section-shell services" id="services">
       <SectionIntro label={t.services.label} title={t.services.title} body={t.services.body} />
@@ -1399,13 +1536,38 @@ function Services({ t, activeService, setActiveService }) {
               </li>
             ))}
           </ul>
-          <a className="text-link" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
-            {t.nav.schedule}
+          <a className="text-link" href={servicePage?.path || (language === "es" ? "/es/" : "/en/")}>
+            {language === "es" ? "Ver servicio en detalle" : "View service details"}
             <ArrowRight size={17} />
           </a>
         </div>
         <img src={service.image} alt={service.alt} />
       </article>
+    </section>
+  );
+}
+
+function ExplorePages({ language }) {
+  const pages = sitePages.filter(
+    (page) => page.language === language && (page.kind === "industry" || page.kind === "location"),
+  );
+  const title = language === "es" ? "IA aplicada por industria y ubicación" : "Applied AI by industry and location";
+  const body = language === "es"
+    ? "Explora páginas específicas con alcance, entregables, evidencia y preguntas frecuentes para cada contexto."
+    : "Explore specific pages with scope, deliverables, evidence, and frequently asked questions for each context.";
+
+  return (
+    <section className="section-shell explore-pages">
+      <SectionIntro title={title} body={body} />
+      <div className="explore-links">
+        {pages.map((page) => (
+          <a href={page.path} key={page.path}>
+            <span>{page.kind === "location" ? (language === "es" ? "Chile" : "Chile") : (language === "es" ? "Industria" : "Industry")}</span>
+            <strong>{page.title}</strong>
+            <ArrowRight size={17} />
+          </a>
+        ))}
+      </div>
     </section>
   );
 }
@@ -1745,14 +1907,183 @@ function Faq({ t, openFaq, setOpenFaq }) {
   );
 }
 
-function LegalPage({ t, type, navigate }) {
+function ContentPage({ page }) {
+  const homePath = page.language === "es" ? "/es/" : "/en/";
+  const homeLabel = page.language === "es" ? "Inicio" : "Home";
+  const audienceLabel = page.language === "es" ? "Para quién es" : "Who it is for";
+  const caseLabel = page.language === "es" ? "Caso relacionado" : "Related case";
+  const evidenceCase = page.kind === "case" ? page : getCasePage(page.language, page.evidenceCase ?? 0);
+  const evidenceRows = page.kind === "case" ? page.evidence : evidenceCase?.evidence;
+  const relatedPages = getRelatedPages(page);
+
+  return (
+    <>
+      <article className="content-page">
+        <div className="section-shell content-hero">
+          <nav className="breadcrumbs" aria-label={page.language === "es" ? "Migas de pan" : "Breadcrumbs"}>
+            <a href={homePath}>{homeLabel}</a>
+            <ArrowRight size={14} />
+            <span>{page.title}</span>
+          </nav>
+          <div className="content-hero-grid">
+            <div>
+              <h1>{page.title}</h1>
+              <p className="content-lead">{page.intro}</p>
+              <div className="hero-actions">
+                <a className="primary-button" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
+                  {page.contact}
+                  <ArrowRight size={17} />
+                </a>
+                <a className="secondary-button" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  <MessageCircle size={17} />
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+            <aside className="audience-panel">
+              <Users size={26} />
+              <h2>{audienceLabel}</h2>
+              <p>{page.audience}</p>
+            </aside>
+          </div>
+        </div>
+
+        <section className="content-band">
+          <div className="section-shell content-split">
+            <div>
+              <h2>{page.deliverablesTitle}</h2>
+              <ul className="content-checklist">
+                {page.deliverables.map((item) => (
+                  <li key={item}>
+                    <CheckCircle2 size={19} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2>{page.processTitle}</h2>
+              <ol className="content-process">
+                {page.phases.map((phase, index) => (
+                  <li key={phase}>
+                    <span>{index + 1}</span>
+                    <p>{phase}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        {evidenceCase ? (
+          <section className="section-shell evidence-section">
+            <div className="content-section-heading">
+              <span>{caseLabel}</span>
+              <h2>{page.evidenceTitle}</h2>
+              <p>{page.evidenceNote}</p>
+            </div>
+            <article className="evidence-feature">
+              <div>
+                <span>{evidenceCase.kind === "case" ? (page.language === "es" ? "Caso real" : "Real case") : caseLabel}</span>
+                <h3>{evidenceCase.title}</h3>
+                <p>{evidenceCase.intro}</p>
+                {page.path !== evidenceCase.path ? (
+                  <a className="text-link" href={evidenceCase.path}>
+                    {page.language === "es" ? "Leer caso completo" : "Read the full case"}
+                    <ArrowRight size={17} />
+                  </a>
+                ) : null}
+              </div>
+              <dl className="evidence-list">
+                {evidenceRows?.map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          </section>
+        ) : null}
+
+        <section className="proof-band public-proof">
+          <div className="section-shell testimonial-policy">
+            <div>
+              <ShieldCheck size={28} />
+              <h2>{page.testimonialTitle}</h2>
+            </div>
+            <p>{page.testimonialBody}</p>
+          </div>
+        </section>
+
+        <section className="section-shell related-section">
+          <div className="content-section-heading">
+            <h2>{page.relatedTitle}</h2>
+          </div>
+          <div className="related-grid">
+            {relatedPages.map((related) => (
+              <a href={related.path} key={related.path}>
+                <span>
+                  {related.kind === "case"
+                    ? (page.language === "es" ? "Caso" : "Case study")
+                    : related.kind === "service"
+                      ? (page.language === "es" ? "Servicio" : "Service")
+                      : related.kind === "industry"
+                        ? (page.language === "es" ? "Industria" : "Industry")
+                        : "Chile"}
+                </span>
+                <h3>{related.title}</h3>
+                <p>{related.description}</p>
+                <ArrowRight size={18} />
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="section-shell page-faq">
+          <div className="content-section-heading">
+            <h2>{page.faqTitle}</h2>
+          </div>
+          <div className="faq-list">
+            {page.faqs.map(([question, answer]) => (
+              <details className="faq-item" key={question}>
+                <summary>
+                  <span>{question}</span>
+                  <ChevronDown size={20} />
+                </summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="contact-band content-cta">
+          <div className="section-shell">
+            <h2>{page.language === "es" ? "Conversemos sobre el proceso correcto." : "Let’s discuss the right process."}</h2>
+            <p>
+              {page.language === "es"
+                ? "El diagnóstico inicial ayuda a decidir si conviene implementar, rescatar o descartar el caso."
+                : "The initial diagnostic helps decide whether to implement, rescue, or stop the use case."}
+            </p>
+            <a className="primary-button" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
+              {page.contact}
+              <ArrowRight size={17} />
+            </a>
+          </div>
+        </section>
+      </article>
+    </>
+  );
+}
+
+function LegalPage({ t, type, homePath, navigate }) {
   const isPrivacy = type === "privacy";
   const title = isPrivacy ? t.legal.privacyTitle : t.legal.legalTitle;
   const sections = isPrivacy ? t.legal.privacySections : t.legal.termsSections;
 
   return (
     <section className="section-shell legal-page">
-      <button className="text-link legal-back" type="button" onClick={() => navigate("/")}>
+      <button className="text-link legal-back" type="button" onClick={() => navigate(homePath)}>
         <ArrowRight size={17} />
         {t.legal.back}
       </button>
@@ -1773,26 +2104,19 @@ function LegalPage({ t, type, navigate }) {
   );
 }
 
-function Footer({ t, navigate }) {
+function Footer({ t, language }) {
+  const privacyPath = language === "es" ? "/es/privacidad/" : "/en/privacy/";
+  const legalPath = language === "es" ? "/es/legal/" : "/en/legal/";
   return (
     <footer className="footer">
       <div className="brand">
-        <img className="brand-logo" src="/images/logo%20v1.jpg" alt="" aria-hidden="true" />
+        <img className="brand-logo" src="/favicon.svg" alt="" aria-hidden="true" />
         <span>IMR Tech</span>
       </div>
       <div className="footer-links">
-        <a href="/privacy" onClick={(event) => {
-          event.preventDefault();
-          navigate("/privacy");
-        }}>{t.footer.privacy}</a>
-        <a href="/legal" onClick={(event) => {
-          event.preventDefault();
-          navigate("/legal");
-        }}>{t.footer.terms}</a>
-        <a href="/legal" onClick={(event) => {
-          event.preventDefault();
-          navigate("/legal");
-        }}>{t.footer.security}</a>
+        <a href={privacyPath}>{t.footer.privacy}</a>
+        <a href={legalPath}>{t.footer.terms}</a>
+        <a href={legalPath}>{t.footer.security}</a>
         <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
           LinkedIn
         </a>
@@ -1802,4 +2126,10 @@ function Footer({ t, navigate }) {
   );
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+if (typeof document !== "undefined") {
+  const path = normalizePath(window.location.pathname);
+  hydrateRoot(
+    document.getElementById("root"),
+    <App initialPath={path} initialLanguage={getLanguageFromPath(path) || resolveInitialLanguage()} />,
+  );
+}

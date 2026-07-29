@@ -107,7 +107,6 @@ function getAllowedOrigins(req) {
     .filter(Boolean);
   const host = req.headers.host;
   return new Set([
-    "https://imrtech.xyz",
     "https://www.imrtech.xyz",
     "http://localhost:5173",
     "http://127.0.0.1:5173",

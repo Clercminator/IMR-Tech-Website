@@ -3,9 +3,14 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender.mjs",
+    "check:seo": "node scripts/validate-seo.mjs",
+    "verify": "npm run build && npm run check:seo",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

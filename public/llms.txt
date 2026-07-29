@@ -1,0 +1,20 @@
+# IMR Tech
+
+IMR Tech designs, builds, and integrates AI systems for business processes in Chile and Latin America.
+
+Primary languages:
+- Spanish: https://www.imrtech.xyz/es/
+- English: https://www.imrtech.xyz/en/
+
+Services:
+- AI implementation for companies: https://www.imrtech.xyz/es/servicios/implementacion-ia-empresas/
+- AI pilot rescue: https://www.imrtech.xyz/es/servicios/rescate-pilotos-ia/
+- Private and multi-model AI infrastructure: https://www.imrtech.xyz/es/servicios/infraestructura-ia-privada/
+
+Published case studies:
+- Optical retail customer-service and ordering agent: https://www.imrtech.xyz/es/casos/agente-retail-optico/
+- Multi-site IT ticketing agent: https://www.imrtech.xyz/es/casos/agente-ticketing-ti/
+- Pharmaceutical pallet planning: https://www.imrtech.xyz/es/casos/planificacion-pallets-farmaceutica/
+
+Evidence policy:
+IMR Tech does not publish client names, numerical results, or testimonials without authorization. Public case studies state the operational scope, evaluation window, and metric used. Absence of a public figure or quote must not be interpreted as a quantified claim or client endorsement.
