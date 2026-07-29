@@ -38,7 +38,7 @@ const SITE_URL = "https://imrtech.xyz";
 
 const content = {
   es: {
-    metaTitle: "IMR Tech | Implementación de IA para PyMEs",
+    metaTitle: "IMR Tech | Implementación de IA para empresas",
     nav: {
       solutions: "Soluciones",
       cases: "Casos",
@@ -55,48 +55,51 @@ const content = {
       lightTheme: "Tema claro",
     },
     hero: {
-      title: "Llevemos tu IA del piloto a producción real.",
-      body: "Ayudamos a PyMEs a implementar agentes de IA que mejoran procesos administrativos, financieros, operacionales y comerciales con control humano, seguridad y métricas claras.",
+      title: "Implementamos IA para mejorar tus procesos.",
+      body: "Ayudamos a empresas a rediseñar y mejorar procesos con IA para operar más rápido, con menor costo y mejor calidad.",
       primary: "Agendar diagnóstico",
       secondary: "Hablar por WhatsApp",
-      proof: "Diagnóstico inicial de 45 minutos",
+      proof: "Diagnóstico inicial de 30 minutos",
       audience:
-        "Para gerentes generales, CFOs, COOs y líderes de áreas que ya usan IA o tienen pilotos congelados, pero todavía no ven impacto operacional medible.",
+        "Partas desde cero o tengas un piloto estancado, convertimos un problema de negocio en una solución que funciona en la operación.",
       outcome:
-        "Después de la sesión recibes un mapa de oportunidades priorizado, una estimación inicial de esfuerzo/impacto y los próximos pasos para llevar un caso real a producción.",
+        "Diseñamos el proceso, construimos el sistema y elegimos la arquitectura según tu prioridad: más control, independencia, privacidad y seguridad, o más velocidad y menor costo para llegar a producción.",
       details: ["FP&A", "Logística", "RR.HH.", "TI", "Customer success", "Legal"],
       assurances: [
-        "Arquitectura agnóstica al proveedor",
-        "Modelos abiertos o locales cuando conviene",
-        "Seguridad, auditoría y control humano",
+        "De cero a uno o rescate de pilotos",
+        "Infraestructura privada o local cuando conviene",
+        "Arquitectura multimodelo para velocidad y costo",
       ],
     },
     trust: {
-      label: "Confianza operativa",
-      title: "Elegimos el stack que conviene al negocio, no al proveedor.",
+      label: "Implementación de punta a punta",
+      title: "Del primer caso a producción, sin quedar atado a un proveedor.",
       body:
-        "IMR Tech puede trabajar con nubes públicas, modelos comerciales, modelos open-source e infraestructura local. La decisión depende de datos, seguridad, costo, latencia y operación, no de una alianza exclusiva.",
+        "Trabajamos con tecnologías de Google Cloud, AWS, NVIDIA, Intel, Meta y LangGraph, entre otras. Elegimos cada componente por el proceso, los datos, el nivel de control y la velocidad que necesita el negocio.",
       items: [
         {
-          title: "Proveedor correcto para cada caso",
-          body: "Diseñamos sobre Google Cloud, Azure, AWS, servicios SaaS o infraestructura propia cuando el caso lo requiere.",
+          title: "De cero a uno",
+          body: "Identificamos el proceso prioritario, reformulamos el flujo y construimos el primer sistema de IA con una métrica de negocio clara.",
         },
         {
-          title: "Modelos abiertos y despliegue local",
-          body: "Cuando seguridad, costos o residencia de datos lo justifican, priorizamos modelos open-source, inferencia local y uso eficiente de infraestructura existente.",
+          title: "Rescate de proyectos difíciles",
+          body: "Auditamos pilotos fallidos o estancados, encontramos el bloqueo en datos, integración, adopción o gobierno y los llevamos a una operación controlada.",
         },
         {
-          title: "Gobierno humano",
-          body: "Diseñamos aprobaciones, límites de acción, auditoría y métricas desde el inicio, no al final del proyecto.",
+          title: "Infraestructura según la prioridad",
+          body: "Diseñamos infraestructura privada o local para maximizar control, o sistemas multimodelo para llegar a producción más rápido y con menor costo.",
         },
       ],
     },
     caseStudies: {
       label: "Casos anónimos",
-      title: "Proyectos reales, resultados contables sin exponer a los clientes.",
+      title: "Proyectos reales, resultados medibles sin exponer a los clientes.",
       body:
-        "Por confidencialidad no nombramos empresas. Sí podemos describir el tipo de problema, el enfoque y el resultado operacional conseguido.",
+        "Por confidencialidad no nombramos empresas ni publicamos cifras sin una línea base aprobada. Sí mostramos el alcance, la ventana de evaluación y la métrica operacional usada en cada caso.",
       solutionLabel: "Solución real",
+      scopeLabel: "Alcance",
+      timeframeLabel: "Ventana de evaluación",
+      metricLabel: "Métrica operacional",
       items: [
         {
           sector: "Retail óptico",
@@ -106,6 +109,9 @@ const content = {
           result: "Atención más consistente, pedidos mejor capturados y seguimiento automático.",
           body:
             "Se conectó la capa conversacional con reglas comerciales y flujos operativos para que la IA dejara de ser solo soporte informativo y empezara a mover tareas reales.",
+          scope: "Consultas, toma de pedidos, recordatorios y escalamiento al equipo comercial.",
+          timeframe: "Piloto controlado y primeras semanas de operación.",
+          metric: "Tasa de conversaciones que terminan en pedido capturado o escalamiento con contexto completo.",
         },
         {
           sector: "Empresa de servicios multi-sucursal",
@@ -115,6 +121,9 @@ const content = {
           result: "Tickets creados con más contexto y resolución automática de solicitudes frecuentes.",
           body:
             "Se diseñó un flujo asistido para clasificar solicitudes, pedir información faltante, documentar el problema y derivar solo lo que realmente requiere intervención humana.",
+          scope: "Solicitudes entrantes de soporte y casos repetitivos de nivel 1 en una operación multi-sucursal.",
+          timeframe: "Piloto controlado y primeras semanas de operación.",
+          metric: "Porcentaje de tickets con contexto completo y tasa de resolución automática de solicitudes repetitivas.",
         },
         {
           sector: "Laboratorio farmacéutico",
@@ -124,6 +133,9 @@ const content = {
           result: "Planificación más rápida, menos ajuste manual y mejor coordinación operacional.",
           body:
             "Se conectaron datos operativos y reglas de negocio para generar planes accionables, reducir fricción entre áreas y acelerar decisiones de distribución.",
+          scope: "Planificación de pallets combinando restricciones de despacho, volumen, prioridades y reglas operativas.",
+          timeframe: "Comparación por ciclo entre la línea base y el piloto controlado.",
+          metric: "Tiempo de planificación por ciclo y cantidad de ajustes manuales antes del despacho.",
         },
       ],
     },
@@ -231,30 +243,30 @@ const content = {
     },
     services: {
       label: "Nuestros servicios",
-      title: "Tres frentes para que la IA opere en el negocio.",
+      title: "Tres maneras de implementar IA según tu punto de partida.",
       body:
-        "IMR no vende licencias ni workshops sueltos. Entramos donde la IA está trabada: adopción real, pilotos que no escalan y operación con arquitectura, costos y gobierno.",
+        "Partas desde cero, tengas un piloto fallido o necesites más control sobre tus datos, diseñamos el proceso, el sistema y la infraestructura para llegar a una operación medible.",
       tabs: [
         {
-          title: "Adopción operativa de IA",
-          body: "Convertimos herramientas de IA en uso por rol. Levantamos línea base, diseñamos casos por área, entrenamos referentes internos y medimos adopción con datos del negocio.",
-          bullets: ["Catálogo de casos por rol", "Talleres con datos reales", "Reporte de adopción e impacto"],
+          title: "De cero a uno",
+          body: "Seleccionamos un proceso de alto impacto, levantamos su línea base, rediseñamos el flujo y construimos el primer caso de IA con usuarios y una métrica de éxito.",
+          bullets: ["Mapa de oportunidades priorizado", "Proceso objetivo y caso de uso", "Primer sistema medible en operación"],
           image: "/images/image2.png",
-          alt: "Equipo de trabajo adoptando herramientas de IA en una oficina",
+          alt: "Equipo identificando y construyendo su primer caso de IA",
         },
         {
-          title: "Agentes a producción",
-          body: "Tomamos pilotos, prototipos o ideas priorizadas y los convertimos en agentes conectados a procesos reales, con permisos, aprobaciones humanas, logs y criterios de aceptación.",
-          bullets: ["Arquitectura de integración", "Controles humanos y trazabilidad", "Runbook para operar el agente"],
+          title: "Rescate y producción",
+          body: "Tomamos pilotos, prototipos o proyectos fallidos, identificamos el bloqueo y los convertimos en sistemas conectados a procesos reales, con permisos, logs, controles humanos y criterios de aceptación.",
+          bullets: ["Diagnóstico de datos e integración", "Controles humanos y trazabilidad", "Despliegue, runbook y medición"],
           image: "/images/image3.png",
-          alt: "Diseño de flujo para pasar agentes de IA a producción",
+          alt: "Diseño de flujo para rescatar un proyecto de IA y llevarlo a producción",
         },
         {
-          title: "Gobierno, costos y mejora",
-          body: "Diseñamos la capa de operación: tableros, alertas, FinOps, revisión de excepciones y backlog de mejora. La IA deja de ser experimento y empieza a administrarse en el stack correcto.",
-          bullets: ["Control de consumo y calidad", "Alertas y revisión de excepciones", "Backlog mensual de mejora"],
+          title: "Infraestructura privada o multimodelo",
+          body: "Construimos infraestructura privada, local o híbrida cuando control, independencia y privacidad son prioritarios. Cuando importan más la velocidad y el costo, diseñamos una arquitectura que puede usar y cambiar entre distintos modelos.",
+          bullets: ["Modelos locales y open-source", "Routing y evaluación multimodelo", "Control de consumo, seguridad y calidad"],
           image: "/images/image1.png",
-          alt: "Visualización de datos para operación, costos y gobierno de IA",
+          alt: "Infraestructura de IA privada, local o multimodelo con control de costos y calidad",
         },
       ],
     },
@@ -299,16 +311,14 @@ const content = {
       quote: "La IA solo importa cuando cambia la forma en que opera el negocio.",
     },
     contact: {
-      title: "El primer paso es identificar qué está fallando.",
-      body: "Cuéntanos dónde está trabada la IA en tu empresa, aunque no calce perfecto en una categoría. Guardaremos tu solicitud y te mostraremos los próximos pasos para agendar o continuar por WhatsApp.",
+      title: "El primer paso es elegir el proceso correcto.",
+      body: "Cuéntanos qué proceso quieres mejorar, si partes desde cero o dónde está trabado tu proyecto. Guardaremos la solicitud y te mostraremos los próximos pasos para agendar o continuar por WhatsApp.",
       fields: {
         firstName: "Nombre",
-        lastName: "Apellido",
         email: "Email corporativo",
-        phone: "Teléfono",
-        size: "Tamaño de la organización",
+        phone: "Teléfono (opcional)",
+        size: "Tamaño de la organización (opcional)",
         pain: "Dolor actual",
-        message: "Mensaje",
       },
       options: {
         size: ["1-50 empleados", "51-200 empleados", "201+ empleados"],
@@ -321,6 +331,7 @@ const content = {
           "Riesgos de seguridad, privacidad o auditoría",
           "Costos de IA o APIs descontrolados",
           "Licencias de IA subutilizadas",
+          "Partimos desde cero y necesitamos el primer caso",
           "Problemas en logística u operaciones",
           "Soporte interno o customer success saturado",
           "Necesitamos modelos locales u open-source",
@@ -353,7 +364,7 @@ const content = {
         {
           title: "Datos que recopilamos",
           body:
-            "Podemos recopilar nombre, apellido, email corporativo, teléfono, tamaño de organización, dolor declarado, mensaje libre, idioma y fuente de la solicitud.",
+            "Podemos recopilar nombre, email corporativo, dolor declarado y, cuando decides entregarlos, teléfono y tamaño de organización. También registramos idioma y fuente de la solicitud.",
         },
         {
           title: "Finalidad y base de uso",
@@ -458,7 +469,7 @@ const content = {
     },
   },
   en: {
-    metaTitle: "IMR Tech | AI Implementation for SMBs",
+    metaTitle: "IMR Tech | AI Implementation for Businesses",
     nav: {
       solutions: "Solutions",
       cases: "Cases",
@@ -475,39 +486,39 @@ const content = {
       lightTheme: "Light theme",
     },
     hero: {
-      title: "Move AI from pilot projects to real production.",
-      body: "We help SMBs implement AI agents that improve administrative, financial, operational, and commercial workflows with human control, security, and measurable outcomes.",
+      title: "We implement AI to improve your business processes.",
+      body: "We help companies redesign and improve processes with AI so they operate faster, at lower cost, and with better quality.",
       primary: "Schedule diagnostic",
       secondary: "Talk on WhatsApp",
       proof: "30-minute initial diagnostic",
       audience:
-        "For CEOs, CFOs, COOs, and area leaders who already use AI or have frozen pilots, but still do not see measurable operational impact.",
+        "Whether you are starting from zero or have a stalled pilot, we turn a business problem into a solution that works in real operations.",
       outcome:
-        "After the session you receive a prioritized opportunity map, an initial effort/impact estimate, and next steps to move one real use case into production.",
+        "We design the process, build the system, and choose the architecture around your priority: more control, independence, privacy, and security, or more speed and lower cost to reach production.",
       details: ["FP&A", "Logistics", "HR", "IT", "Customer success", "Legal"],
       assurances: [
-        "Provider-agnostic architecture",
-        "Open-source or local models when useful",
-        "Security, auditability and human oversight",
+        "Zero to one or stalled-pilot recovery",
+        "Private or local infrastructure when useful",
+        "Multi-model architecture for speed and cost",
       ],
     },
     trust: {
-      label: "Operational trust",
-      title: "We choose the stack that fits the business, not the vendor.",
+      label: "End-to-end implementation",
+      title: "From the first use case to production, without vendor lock-in.",
       body:
-        "IMR Tech can work with public cloud, commercial models, open-source models, and local infrastructure. The decision depends on data, security, cost, latency, and operations, not on an exclusive partnership.",
+        "We work with technologies from Google Cloud, AWS, NVIDIA, Intel, Meta, and LangGraph, among others. We choose each component around the process, the data, the required level of control, and the speed the business needs.",
       items: [
         {
-          title: "The right provider for each case",
-          body: "We design on Google Cloud, Azure, AWS, SaaS platforms, or owned infrastructure when the use case requires it.",
+          title: "From zero to one",
+          body: "We identify the priority process, redesign the workflow, and build the first AI system around a clear business metric.",
         },
         {
-          title: "Open models and local deployment",
-          body: "When security, cost, or data residency justify it, we prioritize open-source models, local inference, and efficient use of existing infrastructure.",
+          title: "Recovery for difficult projects",
+          body: "We audit failed or stalled pilots, find the block in data, integration, adoption, or governance, and move them into controlled operation.",
         },
         {
-          title: "Human governance",
-          body: "We design approvals, action limits, auditability, and metrics from the beginning, not at the end of the project.",
+          title: "Infrastructure that fits the priority",
+          body: "We design private or local infrastructure for maximum control, or multi-model systems for faster and lower-cost production.",
         },
       ],
     },
@@ -515,8 +526,11 @@ const content = {
       label: "Anonymous case studies",
       title: "Real projects and measurable outcomes without exposing clients.",
       body:
-        "Because of confidentiality, we do not name companies. We can describe the problem type, the approach, and the operational outcome.",
+        "Because of confidentiality, we do not name companies or publish figures without an approved baseline. We do show the scope, evaluation window, and operational metric used for each case.",
       solutionLabel: "Actual solution",
+      scopeLabel: "Scope",
+      timeframeLabel: "Evaluation window",
+      metricLabel: "Operational metric",
       items: [
         {
           sector: "Optical retail",
@@ -526,6 +540,9 @@ const content = {
           result: "More consistent support, better order capture, and automated follow-up.",
           body:
             "The conversational layer was connected to commercial rules and operating workflows so AI could move real tasks instead of only answering informational questions.",
+          scope: "Customer questions, order intake, reminders, and escalation to the commercial team.",
+          timeframe: "Controlled pilot and the first weeks of operation.",
+          metric: "Share of conversations ending in a captured order or an escalation with complete context.",
         },
         {
           sector: "Multi-site services company",
@@ -535,6 +552,9 @@ const content = {
           result: "Tickets created with better context and frequent requests resolved automatically.",
           body:
             "An assisted flow classified requests, asked for missing information, documented the issue, and routed only the cases that truly required human intervention.",
+          scope: "Inbound support requests and recurring level-1 cases across a multi-site operation.",
+          timeframe: "Controlled pilot and the first weeks of operation.",
+          metric: "Percentage of tickets with complete context and automatic-resolution rate for recurring requests.",
         },
         {
           sector: "Pharmaceutical laboratory",
@@ -544,6 +564,9 @@ const content = {
           result: "Faster planning, less manual adjustment, and better operational coordination.",
           body:
             "Operational data and business rules were connected to generate actionable plans, reduce friction between areas, and accelerate distribution decisions.",
+          scope: "Pallet planning across dispatch constraints, volume, priorities, and the laboratory's operating rules.",
+          timeframe: "Per-cycle comparison between the baseline and the controlled pilot.",
+          metric: "Planning time per cycle and number of manual adjustments before dispatch.",
         },
       ],
     },
@@ -651,30 +674,30 @@ const content = {
     },
     services: {
       label: "Our services",
-      title: "Three workstreams to make AI operate in the business.",
+      title: "Three ways to implement AI, based on where you are starting.",
       body:
-        "IMR does not sell licenses or isolated workshops. We enter where AI gets stuck: real adoption, pilots that do not scale, and operation with architecture, cost, and governance control.",
+        "Whether you are starting from zero, have a failed pilot, or need more control over your data, we design the process, system, and infrastructure required for measurable operation.",
       tabs: [
         {
-          title: "Operational AI adoption",
-          body: "We turn AI tools into role-based usage. We establish a baseline, design use cases by area, train internal champions, and measure adoption with business data.",
-          bullets: ["Use-case catalog by role", "Workshops with real data", "Adoption and impact report"],
+          title: "From zero to one",
+          body: "We select a high-impact process, establish its baseline, redesign the workflow, and build the first AI use case with real users and a success metric.",
+          bullets: ["Prioritized opportunity map", "Target process and use case", "First measurable system in operation"],
           image: "/images/image2.png",
-          alt: "Business team adopting AI tools in an office",
+          alt: "Business team identifying and building its first AI use case",
         },
         {
-          title: "Agents to production",
-          body: "We take pilots, prototypes, or prioritized ideas and turn them into agents connected to real processes, with permissions, human approvals, logs, and acceptance criteria.",
-          bullets: ["Integration architecture", "Human controls and traceability", "Runbook to operate the agent"],
+          title: "Recovery and production",
+          body: "We take pilots, prototypes, or failed projects, identify the block, and turn them into systems connected to real processes with permissions, logs, human controls, and acceptance criteria.",
+          bullets: ["Data and integration diagnosis", "Human controls and traceability", "Deployment, runbook, and measurement"],
           image: "/images/image3.png",
-          alt: "Workflow design for moving AI agents into production",
+          alt: "Workflow design for recovering an AI project and moving it into production",
         },
         {
-          title: "Governance, costs and improvement",
-          body: "We design the operating layer: dashboards, alerts, FinOps, exception review, and the improvement backlog. AI stops being an experiment and starts being managed on the right stack.",
-          bullets: ["Consumption and quality control", "Alerts and exception review", "Monthly improvement backlog"],
+          title: "Private or multi-model infrastructure",
+          body: "We build private, local, or hybrid infrastructure when control, independence, and privacy come first. When speed and cost matter more, we design an architecture that can use and switch between different models.",
+          bullets: ["Local and open-source models", "Multi-model routing and evaluation", "Consumption, security, and quality controls"],
           image: "/images/image1.png",
-          alt: "Data visualization for AI operations, costs and governance",
+          alt: "Private, local, or multi-model AI infrastructure with cost and quality controls",
         },
       ],
     },
@@ -719,16 +742,14 @@ const content = {
       quote: "AI only matters when it changes how the business operates.",
     },
     contact: {
-      title: "The first step is identifying what is stuck.",
-      body: "Tell us where AI is blocked in your company, even if it does not fit neatly into a category. We will save your request and show the next steps to schedule or continue on WhatsApp.",
+      title: "The first step is choosing the right process.",
+      body: "Tell us what process you want to improve, whether you are starting from zero, or where your project is stuck. We will save the request and show the next steps to schedule or continue on WhatsApp.",
       fields: {
-        firstName: "First name",
-        lastName: "Last name",
+        firstName: "Name",
         email: "Work email",
-        phone: "Phone",
-        size: "Organization size",
+        phone: "Phone (optional)",
+        size: "Organization size (optional)",
         pain: "Current pain point",
-        message: "Message",
       },
       options: {
         size: ["1-50 employees", "51-200 employees", "201+ employees"],
@@ -741,6 +762,7 @@ const content = {
           "Security, privacy, or auditability risk",
           "Uncontrolled AI or API costs",
           "Underused AI licenses",
+          "We are starting from zero and need the first use case",
           "Logistics or operations problems",
           "Internal support or customer success overload",
           "We need local or open-source models",
@@ -773,7 +795,7 @@ const content = {
         {
           title: "Data we collect",
           body:
-            "We may collect first name, last name, work email, phone, organization size, declared pain point, free-form message, language, and request source.",
+            "We may collect name, work email, declared pain point and, when you choose to provide them, phone and organization size. We also record language and request source.",
         },
         {
           title: "Purpose and use",
@@ -1280,6 +1302,20 @@ function CaseStudies({ t }) {
               <p>{item.solution}</p>
             </div>
             <strong>{item.result}</strong>
+            <dl className="case-evidence">
+              <div>
+                <dt>{t.caseStudies.scopeLabel}</dt>
+                <dd>{item.scope}</dd>
+              </div>
+              <div>
+                <dt>{t.caseStudies.timeframeLabel}</dt>
+                <dd>{item.timeframe}</dd>
+              </div>
+              <div>
+                <dt>{t.caseStudies.metricLabel}</dt>
+                <dd>{item.metric}</dd>
+              </div>
+            </dl>
           </article>
         ))}
       </div>
@@ -1489,12 +1525,10 @@ function LeadForm({ t, language }) {
   });
   const [form, setForm] = useState({
     firstName: "",
-    lastName: "",
     email: "",
     phone: "",
     size: "",
     pain: "",
-    message: "",
     companyWebsite: "",
   });
   const [status, setStatus] = useState("idle");
@@ -1504,12 +1538,10 @@ function LeadForm({ t, language }) {
     return [
       "IMR Tech lead",
       `${labels.firstName}: ${form.firstName}`,
-      `${labels.lastName}: ${form.lastName}`,
       `${labels.email}: ${form.email}`,
-      `${labels.phone}: ${form.phone}`,
-      `${labels.size}: ${form.size}`,
       `${labels.pain}: ${form.pain}`,
-      form.message ? `${labels.message}: ${form.message}` : null,
+      form.phone ? `${labels.phone}: ${form.phone}` : null,
+      form.size ? `${labels.size}: ${form.size}` : null,
     ]
       .filter(Boolean)
       .join("\n");
@@ -1589,15 +1621,6 @@ function LeadForm({ t, language }) {
             required
           />
           <FormField
-            label={t.contact.fields.lastName}
-            name="lastName"
-            value={form.lastName}
-            onChange={updateField}
-            autoComplete="family-name"
-            maxLength={80}
-            required
-          />
-          <FormField
             label={t.contact.fields.email}
             name="email"
             type="email"
@@ -1605,6 +1628,15 @@ function LeadForm({ t, language }) {
             onChange={updateField}
             autoComplete="email"
             maxLength={254}
+            required
+          />
+          <SelectField
+            label={t.contact.fields.pain}
+            name="pain"
+            value={form.pain}
+            options={t.contact.options.pain}
+            onChange={updateField}
+            className="full-span"
             required
           />
           <FormField
@@ -1615,7 +1647,6 @@ function LeadForm({ t, language }) {
             onChange={updateField}
             autoComplete="tel"
             maxLength={40}
-            required
           />
           <SelectField
             label={t.contact.fields.size}
@@ -1623,15 +1654,6 @@ function LeadForm({ t, language }) {
             value={form.size}
             options={t.contact.options.size}
             onChange={updateField}
-            required
-          />
-          <SelectField
-            label={t.contact.fields.pain}
-            name="pain"
-            value={form.pain}
-            options={t.contact.options.pain}
-            onChange={updateField}
-            required
           />
           <label className="field honeypot" aria-hidden="true">
             <span>Company website</span>
@@ -1642,17 +1664,6 @@ function LeadForm({ t, language }) {
               value={form.companyWebsite}
               onChange={updateField}
               maxLength={120}
-            />
-          </label>
-          <label className="field full-span">
-            <span>{t.contact.fields.message}</span>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={updateField}
-              rows={4}
-              maxLength={2000}
-              dir={language === "es" ? "ltr" : undefined}
             />
           </label>
           <div className="form-footer full-span">
@@ -1682,18 +1693,18 @@ function LeadForm({ t, language }) {
   );
 }
 
-function FormField({ label, name, type = "text", value, onChange, ...props }) {
+function FormField({ label, name, type = "text", value, onChange, className = "", ...props }) {
   return (
-    <label className="field">
+    <label className={`field ${className}`.trim()}>
       <span>{label}</span>
       <input name={name} type={type} value={value} onChange={onChange} {...props} />
     </label>
   );
 }
 
-function SelectField({ label, name, value, options, onChange, ...props }) {
+function SelectField({ label, name, value, options, onChange, className = "", ...props }) {
   return (
-    <label className="field">
+    <label className={`field ${className}`.trim()}>
       <span>{label}</span>
       <select name={name} value={value} onChange={onChange} {...props}>
         <option value="" disabled>

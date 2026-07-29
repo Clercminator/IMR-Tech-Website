@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IMR Tech - Enterprise AI Solutions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#646464",
+                        "surface-dim": "#cbdbf5",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary-container": "#5e6163",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container": "#e5eeff",
+                        "surface-tint": "#4d44e3",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#dadcde",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#e2e2e2",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary": "#5e5e5e",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-background": "#0b1c30",
+                        "outline": "#777587",
+                        "tertiary": "#46494b",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary": "#3525cd",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "inverse-primary": "#c3c0ff",
+                        "background": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-secondary-fixed-variant": "#474747",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-surface": "#213145",
+                        "surface-container-high": "#dce9ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-surface-variant": "#464555"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "xxl": "80px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "code-sm": ["Geist"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "code-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #f8f9ff; }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .step-active { background-color: #4F46E5; color: white; }
+        .step-inactive { background-color: #FFFFFF; color: #0b1c30; border: 1px solid #E2E8F0; }
+        .gradient-text { background: linear-gradient(to right, #3525cd, #4f46e5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="font-body-md text-body-md text-on-background antialiased selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface/90 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[32px]" style="font-variation-settings: 'FILL' 1;">dataset</span>
+<span class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">IMR Tech</span>
+</div>
+<div class="hidden md:flex gap-lg">
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#solutions">Solutions</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#services">Services</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#why-us">Why Us</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#faq">FAQ</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:block text-label-md font-label-md text-on-surface-variant hover:text-primary px-4 py-2 transition-colors">Contact Sales</button>
+<button class="bg-primary-container text-white px-6 py-2 rounded font-label-md text-label-md hover:bg-primary transition-colors shadow-sm">Get Started</button>
+</div>
+</nav>
+<main class="pt-24 md:pt-32">
+<!-- NEW HERO SECTION -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl md:py-xxl bg-surface-bright flex flex-col items-center text-center">
+<div class="max-w-[900px] mx-auto space-y-lg relative z-10 py-xl">
+<h1 class="text-display-lg font-display-lg text-on-background uppercase font-bold leading-tight tracking-tight">
+            ¿QUIERES LLEVAR TU IA A PRODUCCIÓN REAL?
+        </h1>
+<p class="text-headline-md font-headline-md text-on-surface-variant font-normal max-w-3xl mx-auto">
+            Aprende del equipo que ha escalado la implementación de IA para PyMEs en múltiples industrias.
+        </p>
+<div class="pt-lg">
+<button class="bg-primary-container text-white px-10 py-5 rounded-full font-headline-md text-[20px] font-bold hover:bg-primary hover:-translate-y-1 shadow-xl transition-all duration-300 w-full md:w-auto">
+                ESTOY LISTO PARA ESCALAR
+            </button>
+</div>
+<div class="pt-xxl mt-xl border-t border-outline-variant/30">
+<h2 class="text-headline-md font-headline-md font-bold text-primary mb-sm">
+                ENTRENAMIENTO AVANZADO GRATUITO
+            </h2>
+<p class="text-body-lg text-on-surface-variant">
+                Videos, eBooks, Guías, Plantillas y más para ayudarte a tener éxito
+            </p>
+</div>
+</div>
+</section>
+<!-- Old Hero Content -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl md:py-xxl bg-surface">
+<div class="max-w-[1280px] mx-auto grid md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 space-y-lg relative z-10">
+<div class="inline-flex items-center gap-sm px-3 py-1 bg-surface-container rounded-full text-label-md font-label-md text-primary-container uppercase tracking-widest border border-surface-tint/10">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                        Free Diagnostic · 30 Min
+                    </div>
+<h2 class="text-display-lg font-display-lg text-on-background leading-tight text-[48px]">
+                        Llevemos tu IA del piloto a <span class="gradient-text">producción real.</span>
+</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">
+                        Transforming administrative and operational processes for SMBs through practical, results-oriented AI implementation. Stop leaving value on the table with underutilized licenses.
+                    </p>
+<div class="pt-sm">
+<button class="bg-primary-container text-white px-8 py-4 rounded font-label-md text-label-md hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 flex items-center gap-2">
+                            Agendar sesión de diagnóstico
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="md:col-span-5 relative mt-xl md:mt-0">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-container/20 to-transparent rounded-2xl blur-3xl -z-10"></div>
+<div class="bg-white p-2 rounded-2xl border border-outline-variant/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<img alt="AI Implementation" class="w-full h-auto rounded-xl object-cover aspect-[4/3]" data-alt="A modern enterprise software developer analyzing complex data flow architectures on multiple high-resolution monitors in a sleek, bright office environment, high contrast, clean minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3daw3VawX_wWl5tRBU-JnhM2STb_55evru32K1Z3o_AWpJRubDR3Xx65yM4iqGUiAnt6W7yEAIviGzAVnQ4E0SVfC4-63orjCAmZ9bYyoHVveSvoIk53zHGaWk8xJoPHX8Ss630eT4MCJKthU0smaymwEexIPec1TgIykHP70QeNwrAbhudaCp0_GcGJpMBHTo5f6P_Hqw9Qi5ErTM4je5_MtyY4D23NcNyHqLDQyL7U-24ZZ-nC8mw"/>
+</div>
+</div>
+</div>
+</section>
+<!-- De la tecnología al proceso Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface-container-lowest">
+<div class="max-w-[1280px] mx-auto space-y-xl">
+<div class="text-center space-y-4 max-w-3xl mx-auto">
+<span class="text-label-md font-label-md text-primary-container uppercase tracking-widest font-bold">DE LA TECNOLOGÍA AL PROCESO</span>
+<h2 class="text-headline-lg font-headline-lg text-on-background text-primary">El negocio no compra IA, compra procesos resueltos.</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Un chatbot responde preguntas. Un agente se conecta a tus sistemas, propone una acción y la ejecuta cuando tiene autorización para hacerlo. Así se ve la IA cuando sale del laboratorio y entra a la operación con control humano.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">request_quote</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">FINANZAS &amp; BACK-OFFICE</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente de conciliación</h3>
+<p class="text-body-md text-on-surface-variant">Cruza extractos bancarios con el core contable y propone matches automáticos. Solo escala al equipo las excepciones que requieren juicio humano.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">OPERACIONES &amp; LOGÍSTICA</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente de Supply Chain</h3>
+<p class="text-body-md text-on-surface-variant">Anticipa quiebres de stock y propone órdenes de reabastecimiento al planner. Aprende de cada decisión validada para afinar la siguiente.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">COMERCIAL B2B</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente cotizador</h3>
+<p class="text-body-md text-on-surface-variant">Lee RFPs y correos, recupera información del catálogo y arma el borrador de propuesta. El ejecutivo solo afina pricing y aprueba antes de enviar.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">RECURSOS HUMANOS</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente de selección masiva</h3>
+<p class="text-body-md text-on-surface-variant">Pre-filtra postulaciones y agenda entrevistas según los requisitos del cargo. El reclutador recibe un ranking explicable. Las decisiones de avance y oferta son siempre humanas.</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">SOPORTE TI INTERNO</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente de Nivel 1</h3>
+<p class="text-body-md text-on-surface-variant">Resuelve incidentes recurrentes de Help Desk: reset de contraseñas, reinicio de servicios y validación de identidad. Escala al técnico solo cuando el caso sale del playbook.</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 shadow-sm flex flex-col gap-4">
+<div class="w-12 h-12 bg-surface-container rounded flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<div>
+<div class="text-label-md text-primary font-bold uppercase mb-1">LEGAL &amp; COMPLIANCE</div>
+<h3 class="text-headline-md font-bold text-primary mb-2 text-[20px]">El agente auditor KYC</h3>
+<p class="text-body-md text-on-surface-variant">Revisa documentación corporativa, cruza listas restrictivas e identifica cláusulas de riesgo. Entrega el análisis listo para que compliance tome la decisión final.</p>
+</div>
+</div>
+</div>
+<div class="text-center pt-lg">
+<button class="bg-[#f04e23] hover:bg-[#d6451f] text-white px-8 py-3 rounded-full font-label-md text-label-md transition-colors shadow-sm flex items-center gap-2 mx-auto">
+                Ver casos de uso aplicados
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<p class="text-xs text-on-surface-variant mt-4 italic">Casos referenciales basados en implementaciones documentadas en banca, retail, telco y servicios profesionales. Los resultados específicos varían según el caso.</p>
+</div>
+</div>
+</section>
+<!-- Problem vs Solution Bento -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface border-y border-outline-variant/50" id="solutions">
+<div class="max-w-[1280px] mx-auto space-y-xl">
+<div class="text-center space-y-4 max-w-3xl mx-auto">
+<h2 class="text-headline-lg font-headline-lg text-on-background">Stop improvising, start executing.</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">The difference between an abandoned pilot and a value-generating agent is the architecture behind it.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-gutter">
+<!-- Traditional Way -->
+<div class="p-xl bg-surface-container-lowest rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-error-container/30 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-error">close</span>
+                            Traditional Approach
+                        </h3>
+<ul class="space-y-4 text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1 text-[20px]">horizontal_rule</span>
+<span>Isolated pilots stuck in lab environments.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1 text-[20px]">horizontal_rule</span>
+<span>Unpredictable API costs and lack of budget control.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1 text-[20px]">horizontal_rule</span>
+<span>Generic models lacking domain-specific security.</span>
+</li>
+</ul>
+</div>
+<!-- IMR Way -->
+<div class="p-xl bg-primary-container text-white rounded-xl shadow-lg relative overflow-hidden group">
+<div class="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-tl-full -mb-8 -mr-8 transition-transform group-hover:scale-110"></div>
+<h3 class="text-headline-md font-headline-md mb-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+                            The IMR Framework
+                        </h3>
+<ul class="space-y-4 text-primary-fixed">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white mt-1 text-[20px]">arrow_right_alt</span>
+<span class="text-white">Seamless transition to scalable cloud infrastructure.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white mt-1 text-[20px]">arrow_right_alt</span>
+<span class="text-white">Strict budget guardrails and usage optimization.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-white mt-1 text-[20px]">arrow_right_alt</span>
+<span class="text-white">Enterprise-grade security and data residency compliance.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Services / Steps Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl relative bg-surface-container-lowest" id="services">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center mb-xl space-y-4">
+<span class="text-label-md font-label-md text-primary-container uppercase tracking-widest">Nuestros Servicios</span>
+<h2 class="text-headline-lg font-headline-lg text-on-background">Te ayudamos a llevar tu IA a producción.</h2>
+</div>
+<!-- Interactive Steps Navigation -->
+<div class="flex flex-col md:flex-row justify-center gap-4 mb-xl">
+<button class="step-active px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                        PASO 1: Adopción de Gemini Enterprise
+                    </button>
+<button class="step-inactive px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+                        PASO 2: Pilotos a producción
+                    </button>
+<button class="step-inactive px-6 py-3 rounded-full font-label-md text-label-md flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">monitoring</span>
+                        PASO 3: Operación &amp; Costos
+                    </button>
+</div>
+<!-- Step Content Card -->
+<div class="bg-white rounded-2xl border border-outline-variant/30 shadow-[0_4px_20px_rgb(0,0,0,0.04)] p-lg md:p-xl grid md:grid-cols-2 gap-xl items-center min-h-[400px]">
+<div class="space-y-6">
+<h3 class="text-headline-md font-headline-md text-primary-container">Tienen Gemini Enterprise. Hagamos que se pague solo.</h3>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+                            Cada rol le da un uso distinto a la IA, dejar al equipo con un manual genérico no funciona. Nos sentamos con las áreas clave para que puedan automatizar sus tareas repetitivas con sus propios datos. Levantamos línea base de uso, formamos referentes internos y en 90 días el negocio recibe un reporte concreto con el impacto de la IA.
+                        </p>
+</div>
+<div class="h-full rounded-xl overflow-hidden border border-outline-variant/20">
+<img alt="Team adopting AI" class="w-full h-full object-cover min-h-[300px]" data-alt="A diverse team of corporate professionals collaborating around computer monitors in a bright, modern office, focusing on AI adoption metrics, clean and bright aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJMdzlLm79j2UTEp_aFNMMdwmxE2iIbBYvuAELCPZa_z6ZmhXOrhlnu_TMNqyes2KnZ8LJkIBt1SDOhE6cCp4OkuJrZG39LMOTcIbPQQNT1mQlCvTDxPr01quJHfWGNx_xNfzDfE156XNNu3O4MX2sYV0-JdoqMuLMmqu99rjgefeyreG7rJOu1ELEaPOVjHPbeysSv1ImTN_84lxLoK5NGZbDiTZydLa6auLrXSPx5hnbMBajAIVFAg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Us Section (Grid) -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface" id="why-us">
+<div class="max-w-[1280px] mx-auto">
+<div class="mb-xl text-center">
+<h2 class="text-headline-lg font-headline-lg text-on-background mb-4">Para llevar IA a producción no da lo mismo quién la construye.</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-3xl mx-auto">La diferencia entre un piloto abandonado y un agente que genera valor está en el equipo que lo arma. Por eso conviene con la asesoría de IMR Tech.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-gutter">
+<!-- Feature 1 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container">workspace_premium</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-primary-container mb-3 text-[20px]">No llegamos a aprender, llegamos a ejecutar.</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Somos un grupo de talento Tier 1 certificado en la región, con línea directa a la ingeniería de Google y aplicando arquitecturas que otras consultoras todavía están explorando.</p>
+</div>
+<!-- Feature 2 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container">account_balance_wallet</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-primary-container mb-3 text-[20px]">Parte del proyecto la financia Google.</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Por nuestro nivel de partnership postulamos tu caso al pool global de fondos de Google Cloud. Si califica, parte de la inversión inicial la absorbe Google.</p>
+</div>
+<!-- Feature 3 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container">groups</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-primary-container mb-3 text-[20px]">La calidad del equipo no se queda en la venta.</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Acá el arquitecto que te diseña el agente es el mismo que lo lleva hasta producción, asegurando continuidad y expertise técnico profundo sin intermediarios.</p>
+</div>
+<!-- Feature 4 -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant/40 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgb(0,0,0,0.08)] transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container">language</span>
+</div>
+<h4 class="text-headline-md font-headline-md text-primary-container mb-3 text-[20px]">Respuesta local, mismo horario.</h4>
+<p class="text-body-md font-body-md text-on-surface-variant">Expertise técnico de primera línea, pero local. Si hay un problema, responde alguien que entiende el contexto empresarial local y opera bajo la normativa regional.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparativa del mercado Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface-container-lowest">
+<div class="max-w-[1280px] mx-auto space-y-xl">
+<div class="text-center space-y-4 max-w-3xl mx-auto">
+<span class="text-label-md font-label-md text-[#f04e23] uppercase tracking-widest font-bold">COMPARATIVA DEL MERCADO</span>
+<h2 class="text-headline-lg font-headline-lg text-primary text-[40px] font-bold">Probablemente están comparando opciones. Acá lo concreto.</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Tabla comparativa entre las opciones más frecuentes que evalúan los clientes.</p>
+</div>
+<div class="overflow-x-auto rounded-xl border border-outline-variant/30 shadow-sm">
+<table class="w-full min-w-[800px] text-left border-collapse">
+<thead>
+<tr class="bg-primary text-white">
+<th class="p-4 font-bold text-sm uppercase tracking-wider w-1/4">LO QUE IMPORTA PARA EL NEGOCIO</th>
+<th class="p-4 font-bold text-sm uppercase tracking-wider bg-primary-container w-1/4">IMR TECH</th>
+<th class="p-4 font-bold text-sm uppercase tracking-wider w-1/6">CONSULTORA GLOBAL</th>
+<th class="p-4 font-bold text-sm uppercase tracking-wider w-1/6">HYPERSCALER DIRECTO</th>
+<th class="p-4 font-bold text-sm uppercase tracking-wider w-1/6">BOUTIQUE LOCAL</th>
+</tr>
+</thead>
+<tbody class="text-body-md">
+<tr class="border-b border-outline-variant/20 bg-white">
+<td class="p-4 font-bold text-primary">Expertise Tier 1 en Gemini Enterprise</td>
+<td class="p-4 bg-surface-container font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">Variable</td>
+<td class="p-4 text-on-surface-variant">N/A</td>
+<td class="p-4 text-on-surface-variant">A veces</td>
+</tr>
+<tr class="border-b border-outline-variant/20 bg-surface-bright">
+<td class="p-4 font-bold text-primary">Acceso a fondos de subsidio Google</td>
+<td class="p-4 bg-surface-container-high font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">A veces</td>
+<td class="p-4 text-on-surface-variant">N/A</td>
+<td class="p-4 text-on-surface-variant">A veces</td>
+</tr>
+<tr class="border-b border-outline-variant/20 bg-white">
+<td class="p-4 font-bold text-primary">Control FinOps y optimización de costos</td>
+<td class="p-4 bg-surface-container font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">Premium ($$$)</td>
+<td class="p-4 text-on-surface-variant">Fuera de foco</td>
+<td class="p-4 text-on-surface-variant">Variable</td>
+</tr>
+<tr class="border-b border-outline-variant/20 bg-surface-bright">
+<td class="p-4 font-bold text-primary">Implementación y operación 100% local</td>
+<td class="p-4 bg-surface-container-high font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">Parcial</td>
+<td class="p-4 text-on-surface-variant">Limitado</td>
+<td class="p-4 text-on-surface-variant">Sí</td>
+</tr>
+<tr class="border-b border-outline-variant/20 bg-white">
+<td class="p-4 font-bold text-primary">Equipo local en español, zona horaria</td>
+<td class="p-4 bg-surface-container font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">Parcial</td>
+<td class="p-4 text-on-surface-variant">Parcial</td>
+<td class="p-4 text-on-surface-variant">Sí</td>
+</tr>
+<tr class="bg-surface-bright">
+<td class="p-4 font-bold text-primary">Continuidad del mismo arquitecto</td>
+<td class="p-4 bg-surface-container-high font-bold text-green-600 flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Sí</td>
+<td class="p-4 text-on-surface-variant">Variable</td>
+<td class="p-4 text-on-surface-variant">Variable</td>
+<td class="p-4 text-on-surface-variant">Sí</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Diagnostic Form Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface text-center">
+<div class="max-w-[800px] mx-auto space-y-8">
+<h2 class="text-headline-lg font-headline-lg text-primary font-bold">El primer paso es identificar qué está fallando.</h2>
+<p class="text-body-lg text-on-surface-variant">Coordina una sesión de diagnóstico de 30 minutos. Conversamos sobre por qué las licencias no se usan, por qué los pilotos están congelados o cómo controlar la fuga de costos.</p>
+<form class="space-y-4 max-w-[600px] mx-auto text-left">
+<input class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface" placeholder="Nombre*" required="" type="text"/>
+<input class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface" placeholder="Apellido*" required="" type="text"/>
+<input class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface" placeholder="Email corporativo*" required="" type="email"/>
+<input class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface" placeholder="+569XXXXXXXX*" required="" type="tel"/>
+<div class="relative">
+<select class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface appearance-none" required="">
+<option disabled="" hidden="" selected="" value="">Tamaño de la organización*</option>
+<option value="small">1-50 empleados</option>
+<option value="medium">51-200 empleados</option>
+<option value="large">201+ empleados</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<select class="w-full p-4 rounded-full border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface appearance-none" required="">
+<option disabled="" hidden="" selected="" value="">¿Cuál es tu dolor actual?*</option>
+<option value="licencias">Licencias subutilizadas</option>
+<option value="pilotos">Pilotos estancados</option>
+<option value="costos">Costos descontrolados</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-primary pointer-events-none">expand_more</span>
+</div>
+<textarea class="w-full p-4 rounded-2xl border border-outline-variant/50 bg-white focus:ring-2 focus:ring-primary focus:border-primary outline-none text-on-surface resize-none" placeholder="Mensaje (opcional)" rows="4"></textarea>
+<p class="text-[11px] text-on-surface-variant leading-relaxed mt-4 text-center">
+                IMR Tech se compromete a proteger tu privacidad y tratar tus datos conforme a la Ley de Protección y Tratamiento de Datos Personales. La información que nos entregues será utilizada exclusivamente para gestionar tu cuenta y entregarte los productos o servicios que solicites. Puedes ejercer tus derechos sobre tus datos personales en cualquier momento a través de los canales indicados en nuestra Política de Privacidad.
+            </p>
+</form>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xxl bg-surface-container-lowest" id="faq">
+<div class="max-w-[800px] mx-auto space-y-8">
+<div class="text-center space-y-2">
+<span class="text-label-md font-label-md text-[#f04e23] uppercase tracking-widest font-bold">PREGUNTAS FRECUENTES SOBRE IA AGÉNTICA PARA EMPRESAS</span>
+<h2 class="text-headline-lg font-headline-lg text-primary font-bold">Preguntas que probablemente te estás haciendo</h2>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Qué es la IA agéntica?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Por qué los pilotos de IA no llegan a producción?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Cuánto demora llevar un agente a producción?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Cómo se mide el retorno de la inversión?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 5 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">Compramos Gemini Enterprise y la adopción está bajo lo esperado. ¿Por dónde empezamos?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 6 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Bajo qué marcos de seguridad construyen el agente?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+<!-- FAQ Item 7 -->
+<div class="bg-white border border-outline-variant/30 rounded-2xl p-4 md:p-6 flex justify-between items-center cursor-pointer hover:shadow-sm transition-shadow">
+<h3 class="text-body-md font-bold text-primary">¿Cómo se conecta con la Ley 21.663 (Marco de Ciberseguridad) y la Ley 21.719 (Protección de Datos)?</h3>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-lg bg-on-background dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline">
+<div class="text-headline-md font-headline-md font-bold text-surface dark:text-on-surface">
+            IMR Tech
+        </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-label-md font-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-1" href="#">Privacy Policy</a>
+<a class="text-label-md font-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-1" href="#">Terms of Service</a>
+<a class="text-label-md font-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-1" href="#">Security</a>
+<a class="text-label-md font-label-md text-surface-variant dark:text-on-surface-variant hover:text-primary-fixed-dim transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded px-1" href="#">LinkedIn</a>
+</div>
+<div class="text-body-md font-body-md text-surface-variant dark:text-on-surface-variant text-sm">
+            © 2024 IMR Tech. All rights reserved. Google Cloud Partner.
+        </div>
+</footer>
+</body></html>

@@ -3,7 +3,7 @@ import fs from "node:fs";
 
 const DEFAULT_SHEET_ID = "1Oxn0qfxFE3AyampreDfSfpuU5QrPkCDMP4C2UKBBdA4";
 const DEFAULT_SHEET_TAB = "Leads Website";
-const REQUIRED_FIELDS = ["firstName", "lastName", "email", "phone", "size", "pain"];
+const REQUIRED_FIELDS = ["firstName", "email", "pain"];
 const MAX_BODY_BYTES = 12 * 1024;
 const MIN_SUBMIT_TIME_MS = 2500;
 const MAX_SUBMIT_AGE_MS = 24 * 60 * 60 * 1000;
@@ -37,6 +37,7 @@ const ALLOWED_PAIN_VALUES = new Set([
   "Riesgos de seguridad, privacidad o auditoría",
   "Costos de IA o APIs descontrolados",
   "Licencias de IA subutilizadas",
+  "Partimos desde cero y necesitamos el primer caso",
   "Problemas en logística u operaciones",
   "Soporte interno o customer success saturado",
   "Necesitamos modelos locales u open-source",
@@ -50,6 +51,7 @@ const ALLOWED_PAIN_VALUES = new Set([
   "Security, privacy, or auditability risk",
   "Uncontrolled AI or API costs",
   "Underused AI licenses",
+  "We are starting from zero and need the first use case",
   "Logistics or operations problems",
   "Internal support or customer success overload",
   "We need local or open-source models",
@@ -197,7 +199,7 @@ function validateLead(lead) {
     return { ok: false, message: "Invalid email address.", missing: ["email"] };
   }
 
-  if (!ALLOWED_SIZE_VALUES.has(normalizeText(lead.size))) {
+  if (lead.size && !ALLOWED_SIZE_VALUES.has(normalizeText(lead.size))) {
     return { ok: false, message: "Invalid organization size.", missing: ["size"] };
   }
 

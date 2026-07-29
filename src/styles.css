@@ -25,6 +25,7 @@
   --table-stripe: #f3f6ff;
   --imr-column-bg: #eef2ff;
   --focus-ring: rgba(79, 70, 229, 0.12);
+  --inverse-surface: #0b1c30;
   --shadow: 0 16px 45px rgba(11, 28, 48, 0.08);
   --card-shadow: 0 10px 30px rgba(11, 28, 48, 0.035);
   --radius: 8px;
@@ -629,6 +630,34 @@ img {
   font-weight: 700;
 }
 
+.case-evidence {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.case-evidence div {
+  display: grid;
+  gap: 3px;
+}
+
+.case-evidence dt {
+  color: var(--primary-deep);
+  font-family: Geist, Inter, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.case-evidence dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .framework-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -639,7 +668,7 @@ img {
   margin-top: 22px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
-  background: var(--ink);
+  background: var(--inverse-surface);
   color: rgba(255, 255, 255, 0.76);
   padding: clamp(26px, 4vw, 42px);
   box-shadow: var(--shadow);
@@ -863,7 +892,7 @@ thead th {
 }
 
 thead th:last-child {
-  background: var(--ink);
+  background: var(--inverse-surface);
 }
 
 tbody th {
@@ -908,7 +937,7 @@ tbody td:last-child {
 .founder > div {
   padding: clamp(26px, 5vw, 52px);
   border-radius: 14px;
-  background: var(--ink);
+  background: var(--inverse-surface);
   color: #ffffff;
 }
 
@@ -1207,7 +1236,7 @@ tbody td:last-child {
   align-items: center;
   gap: 20px;
   padding: 30px clamp(16px, 4vw, 64px);
-  background: var(--ink);
+  background: var(--inverse-surface);
   color: #ffffff;
 }
 
@@ -1302,10 +1331,6 @@ tbody td:last-child {
     min-height: auto;
   }
 
-  .hero-media {
-    order: -1;
-  }
-
   .use-case-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1373,13 +1398,56 @@ tbody td:last-child {
   }
 
   .hero {
+    display: flex;
+    flex-direction: column;
     gap: 28px;
     padding-top: 36px;
   }
 
+  .hero-copy {
+    display: contents;
+  }
+
+  .hero-proof {
+    order: 1;
+    margin: 0;
+  }
+
   .hero h1 {
+    order: 2;
     font-size: clamp(2.25rem, 11vw, 3.1rem);
     line-height: 1.02;
+  }
+
+  .hero-body {
+    order: 3;
+    margin-top: -8px;
+  }
+
+  .hero-actions {
+    order: 4;
+    margin-top: 0;
+  }
+
+  .hero-media {
+    order: 5;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .hero-offer {
+    order: 6;
+    margin-top: 0;
+  }
+
+  .hero-assurance {
+    order: 7;
+    margin-top: 0;
+  }
+
+  .hero-tags {
+    order: 8;
+    margin-top: 0;
   }
 
   .hero-media::before {
