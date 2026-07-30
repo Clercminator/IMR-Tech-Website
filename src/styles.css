@@ -132,29 +132,21 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   min-width: 0;
-  font-family: Geist, Inter, sans-serif;
-  font-size: clamp(1.1rem, 2vw, 1.45rem);
-  font-weight: 800;
-  letter-spacing: 0;
-  white-space: nowrap;
 }
 
 .brand-logo {
   display: block;
-  width: 36px;
-  height: 36px;
+  width: clamp(94px, 8vw, 116px);
+  height: auto;
+  max-height: 46px;
   flex: 0 0 auto;
-  border-radius: 4px;
   object-fit: contain;
   object-position: center;
-  mix-blend-mode: multiply;
 }
 
 :root[data-theme="dark"] .brand-logo {
-  filter: none;
-  mix-blend-mode: normal;
+  filter: invert(1);
 }
 
 .desktop-nav {
@@ -1241,14 +1233,13 @@ tbody td:last-child {
 }
 
 .footer .brand {
-  font-size: 1rem;
+  line-height: 1;
 }
 
 .footer .brand-logo {
-  width: 28px;
-  height: 28px;
-  filter: none;
-  mix-blend-mode: normal;
+  width: 104px;
+  max-height: 42px;
+  filter: invert(1);
 }
 
 .footer-links {
@@ -1793,13 +1784,9 @@ tbody td:last-child {
     padding-inline: 14px;
   }
 
-  .brand {
-    font-size: 1.05rem;
-  }
-
   .brand-logo {
-    width: 32px;
-    height: 32px;
+    width: 92px;
+    max-height: 38px;
   }
 
   .language-button {

@@ -229,14 +229,14 @@ const content = {
       body: "La diferencia entre un piloto abandonado y un agente que genera valor está en la arquitectura, el gobierno y la adopción detrás de la solución.",
       manifesto: {
         lead:
-          "La IA no falla por falta de capacidad. Falla cuando se introduce en sistemas ",
-        muted: "no diseñados para absorberla.",
+          "La IA genera valor cuando encuentra una operación preparada para integrarla. ",
+        muted: "El reto no es su potencia, sino el sistema que la sostiene.",
         body:
-          "En entornos regulados, la adopción de IA no es un problema de poder computacional, sino de fricción sistémica. La mayoría de los fracasos ocurren en la última milla: la integración.",
-        quote: "La integridad estructural no es algo que se agregue al final.",
+          "En sectores regulados, el desafío decisivo no está en el modelo, sino en conectarlo con procesos, datos, controles y responsables. Es en esa integración operativa donde los proyectos ganan —o pierden— viabilidad.",
+        quote: "La confianza se diseña desde la arquitectura, no se incorpora al cierre.",
         paragraphs: [
-          "No construimos cajas negras. Diseñamos arquitectura para que la IA opere con transparencia, auditabilidad y supervisión humana efectiva. Entendemos que la tecnología debe servir al juicio humano, no reemplazarlo a ciegas.",
-          "Construimos sistemas resilientes capaces de adaptarse a regulaciones cambiantes sin sacrificar velocidad de innovación.",
+          "Por eso construimos sistemas trazables, auditables y comprensibles, con supervisión humana en las decisiones que lo requieren. La IA amplía el criterio de los equipos; no lo sustituye sin control.",
+          "Nuestras arquitecturas evolucionan con las exigencias regulatorias y del negocio, manteniendo la seguridad sin frenar la capacidad de innovar.",
         ],
       },
       traditional: "Enfoque tradicional",
@@ -660,14 +660,14 @@ const content = {
       body: "The difference between an abandoned pilot and a value-generating agent is the architecture, governance, and adoption model behind it.",
       manifesto: {
         lead:
-          "AI doesn't fail from lack of capability. It fails when introduced into systems ",
-        muted: "not designed to absorb it.",
+          "AI creates value when it enters an operation prepared to integrate it. ",
+        muted: "The real challenge is not its power, but the system supporting it.",
         body:
-          "In regulated environments, AI adoption isn't a computing power problem, but one of systemic friction. Most failures occur in the last mile: integration.",
-        quote: "Structural integrity is not an afterthought.",
+          "In regulated sectors, the decisive challenge is not the model itself, but connecting it to processes, data, controls, and accountable owners. That operational integration is where projects gain — or lose — viability.",
+        quote: "Trust is designed into the architecture, not added at the finish line.",
         paragraphs: [
-          "We don't build black boxes. We design architecture that allows AI to operate with transparency, auditability, and effective human oversight. We understand that technology must serve human judgment, not blindly replace it.",
-          "We build resilient systems capable of adapting to changing regulations without sacrificing innovation speed.",
+          "That is why we build traceable, auditable, and understandable systems, with human oversight wherever decisions require it. AI extends a team's judgment; it does not replace it without control.",
+          "Our architectures evolve with regulatory and business requirements, maintaining security without slowing the ability to innovate.",
         ],
       },
       traditional: "Traditional approach",
@@ -1233,8 +1233,7 @@ function Header({
   return (
     <header className="site-header">
       <a className="brand" href={homePath} aria-label="IMR Tech home">
-        <img className="brand-logo" src="/favicon.svg" alt="" aria-hidden="true" />
-        <span>IMR Tech</span>
+        <img className="brand-logo" src="/images/logo-wordmark.png" alt="" aria-hidden="true" />
       </a>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -2107,12 +2106,12 @@ function LegalPage({ t, type, homePath, navigate }) {
 function Footer({ t, language }) {
   const privacyPath = language === "es" ? "/es/privacidad/" : "/en/privacy/";
   const legalPath = language === "es" ? "/es/legal/" : "/en/legal/";
+  const homePath = language === "es" ? "/es/" : "/en/";
   return (
     <footer className="footer">
-      <div className="brand">
-        <img className="brand-logo" src="/favicon.svg" alt="" aria-hidden="true" />
-        <span>IMR Tech</span>
-      </div>
+      <a className="brand" href={homePath} aria-label="IMR Tech home">
+        <img className="brand-logo" src="/images/logo-wordmark.png" alt="" aria-hidden="true" />
+      </a>
       <div className="footer-links">
         <a href={privacyPath}>{t.footer.privacy}</a>
         <a href={legalPath}>{t.footer.terms}</a>
