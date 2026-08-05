@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
 :root {
   color-scheme: light;
   --background: #f8f9ff;
@@ -109,11 +111,6 @@ button {
 img {
   display: block;
   max-width: 100%;
-}
-
-main > section:not(.hero):not(.legal-page) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 680px;
 }
 
 .site-header {
@@ -821,27 +818,6 @@ main > section:not(.hero):not(.legal-page) {
   aspect-ratio: 4 / 3;
 }
 
-.service-page-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 18px;
-  margin-top: 22px;
-  color: var(--primary-deep);
-  font-size: 0.86rem;
-  font-weight: 750;
-}
-
-.service-page-links a {
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
-  text-underline-offset: 4px;
-}
-
-.service-page-links a:hover {
-  text-decoration-color: currentColor;
-}
-
 .service-bullets {
   display: grid;
   gap: 10px;
@@ -1420,13 +1396,6 @@ tbody td:last-child {
   gap: clamp(46px, 8vw, 112px);
 }
 
-.about-copy p {
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 1.04rem;
-  line-height: 1.8;
-}
-
 .content-split h2,
 .evidence-section h2,
 .related-section h2,
@@ -1535,20 +1504,6 @@ tbody td:last-child {
 .evidence-feature p {
   color: var(--muted);
   line-height: 1.7;
-}
-
-.about-leadership-image {
-  width: 100%;
-  max-height: 380px;
-  margin-bottom: 24px;
-  border: 1px solid var(--image-border);
-  border-radius: var(--radius);
-  object-fit: cover;
-  object-position: center 22%;
-}
-
-.about-facts {
-  margin-top: 24px;
 }
 
 .evidence-list {
@@ -1710,11 +1665,6 @@ tbody td:last-child {
   color: var(--muted);
 }
 
-.about-principles-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 980px;
-}
-
 .content-cta .primary-button {
   display: inline-flex;
 }
@@ -1832,8 +1782,6 @@ tbody td:last-child {
   .site-header {
     min-height: 68px;
     padding-inline: 14px;
-    background: var(--background);
-    backdrop-filter: none;
   }
 
   .brand-logo {
@@ -1990,10 +1938,6 @@ tbody td:last-child {
   }
 
   .related-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-principles-list {
     grid-template-columns: 1fr;
   }
 

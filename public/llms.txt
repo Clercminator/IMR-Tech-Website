@@ -6,13 +6,8 @@ Primary languages:
 - Spanish: https://www.imrtech.xyz/es/
 - English: https://www.imrtech.xyz/en/
 
-Company information:
-- Spanish: https://www.imrtech.xyz/es/sobre-nosotros/
-- English: https://www.imrtech.xyz/en/about-us/
-
 Services:
 - AI implementation for companies: https://www.imrtech.xyz/es/servicios/implementacion-ia-empresas/
-- Enterprise AI agents: https://www.imrtech.xyz/es/servicios/agentes-ia-empresas/
 - AI pilot rescue: https://www.imrtech.xyz/es/servicios/rescate-pilotos-ia/
 - Private and multi-model AI infrastructure: https://www.imrtech.xyz/es/servicios/infraestructura-ia-privada/
 
