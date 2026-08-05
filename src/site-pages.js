@@ -1,5 +1,15 @@
 export const SITE_URL = "https://www.imrtech.xyz";
 
+export const ORGANIZATION_IDENTITY = Object.freeze({
+  name: "IMR Tech",
+  legalName: "IMR TECH SpA",
+  description:
+    "IMR Tech is a Chilean AI implementation company that designs, builds, and integrates AI systems for business processes. We help companies identify high-value use cases, move stalled pilots into production, and deploy private, local, or multi-model AI infrastructure with human controls, traceability, and measurable operational outcomes.",
+  foundingDate: "2026",
+  linkedinUrl: "https://www.linkedin.com/company/clerc-limited",
+  logoUrl: `${SITE_URL}/images/logo-icon.png`,
+});
+
 const shared = {
   es: {
     contact: "Agendar diagnóstico",
@@ -204,6 +214,100 @@ const cases = {
   ],
 };
 
+const aboutPages = {
+  es: {
+    kind: "about",
+    slug: "sobre-nosotros",
+    title: "Sobre nosotros",
+    description:
+      "IMR Tech es una empresa chilena de implementación de inteligencia artificial que diseña, construye e integra sistemas de IA para procesos empresariales.",
+    intro:
+      "IMR Tech es una empresa chilena de implementación de inteligencia artificial que diseña, construye e integra sistemas de IA para procesos empresariales. Ayudamos a las empresas a identificar casos de uso de alto valor, llevar pilotos estancados a producción y desplegar infraestructura de IA privada, local o multimodelo con controles humanos, trazabilidad y resultados operacionales medibles.",
+    locationTitle: "Presencia local, alcance regional",
+    locationBody:
+      "Estamos basados en Santiago y trabajamos con líderes de negocio y equipos técnicos en Chile y Latinoamérica. Los proyectos pueden coordinarse de forma presencial o remota según el proceso y las necesidades del equipo.",
+    purposeTitle: "Por qué existe IMR Tech",
+    purposeBody:
+      "La IA genera valor cuando se conecta con un proceso, responsables, datos, permisos y una forma concreta de medir la operación. Nuestro trabajo es convertir una oportunidad o un piloto aislado en un sistema que el negocio puede usar, supervisar y mejorar.",
+    approachTitle: "Cómo trabajamos",
+    approachBody:
+      "Partimos por el problema operacional y la línea base. Luego diseñamos el flujo, elegimos la arquitectura apropiada, integramos los sistemas necesarios y validamos el resultado con usuarios, controles humanos, logs y criterios de aceptación.",
+    principlesTitle: "Principios de trabajo",
+    principles: [
+      "El proceso y su métrica se definen antes de elegir el modelo.",
+      "Las acciones sensibles conservan autorización y supervisión humana.",
+      "La arquitectura puede ser cloud, local, privada o multimodelo según el caso.",
+      "La trazabilidad, los permisos y la operación se diseñan desde el inicio.",
+    ],
+    leadershipTitle: "Liderazgo orientado a ejecución",
+    leadershipBody:
+      "IMR Tech es liderado por David Clerc y un equipo enfocado en estrategia de negocio, arquitectura cloud, automatización e implementación de agentes. Trabajamos junto a los equipos del cliente desde el diagnóstico hasta la operación y la transferencia.",
+    factsTitle: "Información de la empresa",
+    facts: [
+      ["Marca", "IMR Tech"],
+      ["Razón social", "IMR TECH SpA"],
+      ["Fundación", "2026"],
+      ["Sede", "Santiago, Chile"],
+      ["Área de servicio", "Chile y Latinoamérica"],
+    ],
+    servicesTitle: "Qué implementamos",
+    servicesBody:
+      "Nuestro trabajo cubre cuatro líneas conectadas: implementación de IA para procesos empresariales, agentes de IA integrados con sistemas reales, rescate de pilotos que no llegaron a producción e infraestructura privada, local o multimodelo.",
+    evidenceTitle: "Evidencia antes que promesas",
+    evidenceBody:
+      "No publicamos nombres, cifras ni testimonios de clientes sin autorización. Los casos públicos describen el alcance, la ventana de evaluación y la métrica operacional utilizada; cuando un resultado numérico no está autorizado, lo indicamos de forma explícita.",
+    ctaTitle: "Conversemos sobre el proceso correcto.",
+    ctaBody:
+      "El diagnóstico inicial ayuda a decidir si conviene implementar, rescatar o descartar el caso antes de comprometer una arquitectura.",
+    contact: "Agendar diagnóstico",
+  },
+  en: {
+    kind: "about",
+    slug: "about-us",
+    title: "About us",
+    description:
+      "IMR Tech is a Chilean AI implementation company that designs, builds, and integrates AI systems for business processes.",
+    intro: ORGANIZATION_IDENTITY.description,
+    locationTitle: "Local presence, regional reach",
+    locationBody:
+      "We are based in Santiago and work with business leaders and technical teams in Chile and Latin America. Projects can be coordinated in person or remotely depending on the process and the team's needs.",
+    purposeTitle: "Why IMR Tech exists",
+    purposeBody:
+      "AI creates value when it is connected to a process, owners, data, permissions, and a concrete way to measure operations. Our role is to turn an opportunity or isolated pilot into a system the business can use, supervise, and improve.",
+    approachTitle: "How we work",
+    approachBody:
+      "We start with the operational problem and its baseline. We then design the workflow, select the appropriate architecture, integrate the required systems, and validate the outcome with users, human controls, logs, and acceptance criteria.",
+    principlesTitle: "Working principles",
+    principles: [
+      "The process and its metric are defined before selecting a model.",
+      "Sensitive actions retain human authorization and supervision.",
+      "Architecture may be cloud, local, private, or multi-model depending on the use case.",
+      "Traceability, permissions, and operations are designed from the start.",
+    ],
+    leadershipTitle: "Leadership focused on execution",
+    leadershipBody:
+      "IMR Tech is led by David Clerc and a team focused on business strategy, cloud architecture, automation, and agent implementation. We work alongside client teams from diagnostic through operation and knowledge transfer.",
+    factsTitle: "Company information",
+    facts: [
+      ["Brand", "IMR Tech"],
+      ["Legal name", "IMR TECH SpA"],
+      ["Founded", "2026"],
+      ["Headquarters", "Santiago, Chile"],
+      ["Service area", "Chile and Latin America"],
+    ],
+    servicesTitle: "What we implement",
+    servicesBody:
+      "Our work covers four connected areas: AI implementation for business processes, AI agents integrated with real systems, rescue of pilots that did not reach production, and private, local, or multi-model infrastructure.",
+    evidenceTitle: "Evidence before promises",
+    evidenceBody:
+      "We do not publish client names, figures, or testimonials without authorization. Public case studies describe the scope, evaluation window, and operational metric used; when a numerical result is not authorized, we say so explicitly.",
+    ctaTitle: "Let’s discuss the right process.",
+    ctaBody:
+      "The initial diagnostic helps determine whether to implement, rescue, or stop the use case before committing to an architecture.",
+    contact: "Schedule a diagnostic",
+  },
+};
+
 const topics = {
   es: [
     {
@@ -255,6 +359,31 @@ const topics = {
       faqs: [
         ["¿Un modelo local siempre es más privado?", "No por sí solo. La privacidad depende también de identidad, red, almacenamiento, logs, acceso administrativo y operación."],
         ["¿Pueden cambiar de modelo sin rehacer el sistema?", "Diseñamos interfaces y evaluaciones para reducir el acoplamiento cuando esa flexibilidad tiene valor para el negocio."],
+      ],
+    },
+    {
+      kind: "service",
+      slug: "servicios/agentes-ia-empresas",
+      title: "Agentes de IA para empresas en Chile",
+      description:
+        "Agentes de IA para empresas en Chile, conectados a datos y sistemas reales con permisos, trazabilidad, métricas y supervisión humana.",
+      intro:
+        "Diseñamos e implementamos agentes de inteligencia artificial que consultan información autorizada, preparan respuestas y ejecutan acciones delimitadas dentro de procesos empresariales. El trabajo comienza por el flujo operacional: qué debe resolver el agente, qué herramientas puede usar, cuándo necesita aprobación humana y cómo se medirá cada resultado.",
+      audience:
+        "Empresas que quieren automatizar atención, soporte interno, gestión de solicitudes o tareas administrativas sin entregar acceso indiscriminado a sus datos y sistemas.",
+      deliverables: [
+        "Mapa de intenciones, decisiones, acciones y escalamiento.",
+        "Integración con fuentes de datos, APIs y herramientas autorizadas.",
+        "Permisos mínimos, controles humanos, logs y observabilidad.",
+        "Pruebas, métricas de calidad y runbook para operar y mejorar el agente.",
+      ],
+      evidenceCase: 0,
+      relatedCaseIndices: [0, 1],
+      faqs: [
+        ["¿Qué diferencia a un agente de IA de un chatbot?", "Un chatbot responde dentro de una conversación. Un agente puede además consultar sistemas y ejecutar acciones delimitadas, siempre sujeto a permisos, reglas, trazabilidad y escalamiento."],
+        ["¿Con qué sistemas se puede integrar?", "Puede conectarse con CRM, ERP, ticketing, catálogos, bases de conocimiento u otras herramientas cuando existen APIs o mecanismos seguros de integración."],
+        ["¿Cómo se controla una acción equivocada?", "Definimos permisos mínimos por herramienta, validaciones previas, límites de acción, autorización humana para operaciones sensibles, logs y criterios explícitos de escalamiento."],
+        ["¿Cómo se mide el resultado?", "La métrica depende del proceso: puede ser resolución con evidencia, solicitudes completas, pedidos capturados, tiempo de ciclo, escalamiento correcto o calidad por intención y acción."],
       ],
     },
     {
@@ -351,6 +480,18 @@ topics.en = [
     faqs: [["Is a local model automatically private?", "No. Privacy also depends on identity, network, storage, logs, administrative access, and operations."], ["Can models be changed without rebuilding the system?", "We design interfaces and evaluations that reduce coupling when that flexibility has business value."]],
   },
   {
+    kind: "service",
+    slug: "services/enterprise-ai-agents",
+    title: "Enterprise AI agents for companies",
+    description: "Enterprise AI agents connected to real data and systems with permissions, traceability, metrics, and human oversight.",
+    intro: "We design and implement AI agents that retrieve authorized information, prepare responses, and perform bounded actions inside business processes. The work starts with the operational workflow: what the agent should resolve, which tools it may use, when human approval is required, and how each outcome will be measured.",
+    audience: "Companies seeking to automate customer service, internal support, request management, or administrative tasks without granting indiscriminate access to data and systems.",
+    deliverables: ["Map of intents, decisions, actions, and escalation.", "Integration with authorized data sources, APIs, and tools.", "Minimum permissions, human controls, logs, and observability.", "Testing, quality metrics, and a runbook to operate and improve the agent."],
+    evidenceCase: 0,
+    relatedCaseIndices: [0, 1],
+    faqs: [["How is an AI agent different from a chatbot?", "A chatbot responds within a conversation. An agent can also retrieve information and perform bounded actions, always subject to permissions, rules, traceability, and escalation."], ["Which systems can an agent integrate with?", "It can connect to CRM, ERP, ticketing, catalogs, knowledge bases, and other tools when secure APIs or integration mechanisms are available."], ["How do you control an incorrect action?", "We define minimum permissions for each tool, pre-action validation, action limits, human authorization for sensitive operations, logs, and explicit escalation criteria."], ["How is the outcome measured?", "The metric follows the process: it may be evidence-backed resolution, complete requests, captured orders, cycle time, correct escalation, or quality by intent and action."]],
+  },
+  {
     kind: "industry",
     slug: "industries/retail",
     title: "AI for retail and customer success",
@@ -403,6 +544,11 @@ function pagePath(language, slug, kind) {
 }
 
 export const sitePages = ["es", "en"].flatMap((language) => {
+  const aboutPage = {
+    ...aboutPages[language],
+    language,
+    path: pagePath(language, aboutPages[language].slug, "about"),
+  };
   const topicPages = topics[language].map((page) => ({
     ...shared[language],
     ...page,
@@ -416,13 +562,15 @@ export const sitePages = ["es", "en"].flatMap((language) => {
     language,
     path: pagePath(language, page.slug, "case"),
   }));
-  return [...topicPages, ...casePages];
+  return [aboutPage, ...topicPages, ...casePages];
 });
 
 const pairs = [
+  ["sobre-nosotros", "about-us"],
   ["servicios/implementacion-ia-empresas", "services/enterprise-ai-implementation"],
   ["servicios/rescate-pilotos-ia", "services/ai-pilot-rescue"],
   ["servicios/infraestructura-ia-privada", "services/private-ai-infrastructure"],
+  ["servicios/agentes-ia-empresas", "services/enterprise-ai-agents"],
   ["industrias/retail", "industries/retail"],
   ["industrias/logistica", "industries/logistics"],
   ["industrias/servicios-profesionales", "industries/professional-services"],
@@ -481,13 +629,23 @@ export function getServicePage(language, index) {
 export function getRelatedPages(page) {
   if (!page) return [];
   if (page.kind === "case") {
-    return sitePages.filter((candidate) => candidate.language === page.language && candidate.kind === "service").slice(0, 3);
+    const services = sitePages.filter(
+      (candidate) => candidate.language === page.language && candidate.kind === "service",
+    );
+    const isAgentCase = page.slug.includes("agente") || page.slug.includes("agent");
+    const agentsPage = services.find((candidate) =>
+      candidate.slug === "servicios/agentes-ia-empresas" || candidate.slug === "services/enterprise-ai-agents",
+    );
+    return [isAgentCase ? agentsPage : null, ...services]
+      .filter((candidate, index, items) => candidate && items.indexOf(candidate) === index)
+      .slice(0, 3);
   }
-  const linkedCase = getCasePage(page.language, page.evidenceCase ?? 0);
+  const linkedCases = (page.relatedCaseIndices || [page.evidenceCase ?? 0])
+    .map((index) => getCasePage(page.language, index));
   const siblings = sitePages.filter(
     (candidate) => candidate.language === page.language && candidate.kind === page.kind && candidate.path !== page.path,
   );
-  return [linkedCase, ...siblings].filter(Boolean).slice(0, 3);
+  return [...linkedCases, ...siblings].filter(Boolean).slice(0, 3);
 }
 
 export const staticRoutes = [

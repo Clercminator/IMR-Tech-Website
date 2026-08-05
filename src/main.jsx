@@ -31,6 +31,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import {
+  ORGANIZATION_IDENTITY,
   SITE_URL,
   getAlternatePath,
   getCasePage,
@@ -45,7 +46,7 @@ import {
 
 const SCHEDULE_URL = "https://calendar.app.google/MbgLStQBeqJT3MYy5";
 const WHATSAPP_URL = "https://wa.me/message/JDI5GLAII5DCG1";
-const LINKEDIN_URL = "https://www.linkedin.com/company/clerc-limited";
+const LINKEDIN_URL = ORGANIZATION_IDENTITY.linkedinUrl;
 
 const content = {
   es: {
@@ -75,7 +76,7 @@ const content = {
         "Partas desde cero o tengas un piloto estancado, convertimos un problema de negocio en una solución que funciona en la operación.",
       outcome:
         "Diseñamos el proceso, construimos el sistema y elegimos la arquitectura según tu prioridad: más control, independencia, privacidad y seguridad, o más velocidad y menor costo para llegar a producción.",
-      details: ["FP&A", "Logística", "RR.HH.", "TI", "Customer success", "Legal"],
+      details: ["Agentes de IA", "FP&A", "Logística", "RR.HH.", "TI", "Customer success", "Legal"],
       assurances: [
         "De cero a uno o rescate de pilotos",
         "Infraestructura privada o local cuando conviene",
@@ -254,7 +255,7 @@ const content = {
     },
     services: {
       label: "Nuestros servicios",
-      title: "Tres maneras de implementar IA según tu punto de partida.",
+      title: "Cuatro maneras de implementar IA según tu punto de partida.",
       body:
         "Partas desde cero, tengas un piloto fallido o necesites más control sobre tus datos, diseñamos el proceso, el sistema y la infraestructura para llegar a una operación medible.",
       tabs: [
@@ -264,6 +265,8 @@ const content = {
           bullets: ["Mapa de oportunidades priorizado", "Proceso objetivo y caso de uso", "Primer sistema medible en operación"],
           image: "/images/image2.png",
           alt: "Equipo identificando y construyendo su primer caso de IA",
+          width: 800,
+          height: 545,
         },
         {
           title: "Rescate y producción",
@@ -271,6 +274,8 @@ const content = {
           bullets: ["Diagnóstico de datos e integración", "Controles humanos y trazabilidad", "Despliegue, runbook y medición"],
           image: "/images/image3.png",
           alt: "Diseño de flujo para rescatar un proyecto de IA y llevarlo a producción",
+          width: 1280,
+          height: 720,
         },
         {
           title: "Infraestructura privada o multimodelo",
@@ -278,6 +283,17 @@ const content = {
           bullets: ["Modelos locales y open-source", "Routing y evaluación multimodelo", "Control de consumo, seguridad y calidad"],
           image: "/images/image1.png",
           alt: "Infraestructura de IA privada, local o multimodelo con control de costos y calidad",
+          width: 900,
+          height: 585,
+        },
+        {
+          title: "Agentes de IA para empresas",
+          body: "Diseñamos agentes que consultan información, preparan respuestas y ejecutan acciones delimitadas en sistemas reales. Cada agente opera con permisos mínimos, trazabilidad, criterios de escalamiento y autorización humana cuando corresponde.",
+          bullets: ["Flujos conectados a datos y herramientas", "Permisos, logs y escalamiento humano", "Métricas por intención, acción y resultado"],
+          image: "/images/hero-ai-implementation.jpg",
+          alt: "Agente de inteligencia artificial conectado a procesos y sistemas empresariales",
+          width: 512,
+          height: 279,
         },
       ],
     },
@@ -506,7 +522,7 @@ const content = {
         "Whether you are starting from zero or have a stalled pilot, we turn a business problem into a solution that works in real operations.",
       outcome:
         "We design the process, build the system, and choose the architecture around your priority: more control, independence, privacy, and security, or more speed and lower cost to reach production.",
-      details: ["FP&A", "Logistics", "HR", "IT", "Customer success", "Legal"],
+      details: ["AI agents", "FP&A", "Logistics", "HR", "IT", "Customer success", "Legal"],
       assurances: [
         "Zero to one or stalled-pilot recovery",
         "Private or local infrastructure when useful",
@@ -685,7 +701,7 @@ const content = {
     },
     services: {
       label: "Our services",
-      title: "Three ways to implement AI, based on where you are starting.",
+      title: "Four ways to implement AI, based on where you are starting.",
       body:
         "Whether you are starting from zero, have a failed pilot, or need more control over your data, we design the process, system, and infrastructure required for measurable operation.",
       tabs: [
@@ -695,6 +711,8 @@ const content = {
           bullets: ["Prioritized opportunity map", "Target process and use case", "First measurable system in operation"],
           image: "/images/image2.png",
           alt: "Business team identifying and building its first AI use case",
+          width: 800,
+          height: 545,
         },
         {
           title: "Recovery and production",
@@ -702,6 +720,8 @@ const content = {
           bullets: ["Data and integration diagnosis", "Human controls and traceability", "Deployment, runbook, and measurement"],
           image: "/images/image3.png",
           alt: "Workflow design for recovering an AI project and moving it into production",
+          width: 1280,
+          height: 720,
         },
         {
           title: "Private or multi-model infrastructure",
@@ -709,6 +729,17 @@ const content = {
           bullets: ["Local and open-source models", "Multi-model routing and evaluation", "Consumption, security, and quality controls"],
           image: "/images/image1.png",
           alt: "Private, local, or multi-model AI infrastructure with cost and quality controls",
+          width: 900,
+          height: 585,
+        },
+        {
+          title: "Enterprise AI agents",
+          body: "We design agents that retrieve information, prepare responses, and perform bounded actions in real systems. Each agent operates with minimum permissions, traceability, escalation criteria, and human authorization where required.",
+          bullets: ["Workflows connected to data and tools", "Permissions, logs, and human escalation", "Metrics by intent, action, and outcome"],
+          image: "/images/hero-ai-implementation.jpg",
+          alt: "Artificial intelligence agent connected to enterprise processes and systems",
+          width: 512,
+          height: 279,
         },
       ],
     },
@@ -1022,6 +1053,8 @@ export function App({ initialPath, initialLanguage }) {
       <main>
         {legalType ? (
           <LegalPage t={t} type={legalType} homePath={homePath} navigate={navigate} />
+        ) : page?.kind === "about" ? (
+          <AboutPage page={page} />
         ) : page ? (
           <ContentPage page={page} t={t} />
         ) : (
@@ -1122,19 +1155,59 @@ function buildBreadcrumbs(path, language, title) {
 function StructuredData({ language, path, t, page }) {
   const seo = getRouteSeo(path, language);
   const faqItems = page?.faqs || (!page && !getLegalType(path) ? t.faq.items.map((item) => [item.question, item.answer]) : []);
+  const organizationId = `${SITE_URL}/#organization`;
+  const logoId = `${SITE_URL}/#logo`;
+  const webPage = {
+    "@type": page?.kind === "about" ? "AboutPage" : "WebPage",
+    "@id": `${seo.canonical}#webpage`,
+    url: seo.canonical,
+    name: seo.title,
+    description: seo.description,
+    inLanguage: language,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": organizationId },
+  };
+  if (page?.kind === "about") webPage.mainEntity = { "@id": organizationId };
+
   const graph = [
     {
       "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: "IMR Tech",
-      legalName: "IMR TECH SpA",
-      url: SITE_URL,
-      logo: `${SITE_URL}/images/logo%20v1.jpg`,
+      "@id": organizationId,
+      name: ORGANIZATION_IDENTITY.name,
+      legalName: ORGANIZATION_IDENTITY.legalName,
+      url: `${SITE_URL}/`,
+      description: ORGANIZATION_IDENTITY.description,
+      foundingDate: ORGANIZATION_IDENTITY.foundingDate,
+      founder: {
+        "@type": "Person",
+        name: "David Clerc",
+      },
+      logo: {
+        "@type": "ImageObject",
+        "@id": logoId,
+        url: ORGANIZATION_IDENTITY.logoUrl,
+        contentUrl: ORGANIZATION_IDENTITY.logoUrl,
+        width: 512,
+        height: 512,
+        caption: "IMR Tech",
+      },
+      image: { "@id": logoId },
       sameAs: [LINKEDIN_URL],
-      description: seo.description,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Santiago",
+        addressRegion: "Región Metropolitana",
+        addressCountry: "CL",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        url: `${SITE_URL}/es/#contact`,
+        availableLanguage: ["Spanish", "English"],
+      },
       areaServed: [
-        { "@type": "Country", name: language === "es" ? "Chile" : "Chile" },
-        { "@type": "Place", name: language === "es" ? "Latinoamérica" : "Latin America" },
+        { "@type": "Country", name: "Chile" },
+        { "@type": "Place", name: "Latin America" },
       ],
       knowsAbout: [
         "AI implementation",
@@ -1147,52 +1220,44 @@ function StructuredData({ language, path, t, page }) {
     {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
+      url: `${SITE_URL}/`,
       name: "IMR Tech",
-      publisher: { "@id": `${SITE_URL}/#organization` },
+      alternateName: "imrtech.xyz",
+      publisher: { "@id": organizationId },
       inLanguage: ["es", "en"],
     },
-    {
-      "@type": "WebPage",
-      "@id": `${seo.canonical}#webpage`,
-      url: seo.canonical,
-      name: seo.title,
-      description: seo.description,
-      inLanguage: language,
-      isPartOf: { "@id": `${SITE_URL}/#website` },
-      about: { "@id": `${SITE_URL}/#organization` },
-    },
+    webPage,
     {
       "@type": "BreadcrumbList",
       itemListElement: buildBreadcrumbs(seo.path, language, page?.title || seo.title),
     },
   ];
 
-  if (page) {
+  if (page?.kind === "case") {
     graph.push(
-      page.kind === "case"
-        ? {
-            "@type": "Article",
-            headline: page.title,
-            description: page.description,
-            inLanguage: language,
-            mainEntityOfPage: { "@id": `${seo.canonical}#webpage` },
-            author: { "@id": `${SITE_URL}/#organization` },
-            publisher: { "@id": `${SITE_URL}/#organization` },
-          }
-        : {
-            "@type": "Service",
-            name: page.title,
-            description: page.description,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: { "@type": "Country", name: "Chile" },
-            availableChannel: {
-              "@type": "ServiceChannel",
-              serviceUrl: seo.canonical,
-              availableLanguage: ["Spanish", "English"],
-            },
-          },
+      {
+        "@type": "Article",
+        headline: page.title,
+        description: page.description,
+        inLanguage: language,
+        mainEntityOfPage: { "@id": `${seo.canonical}#webpage` },
+        author: { "@id": organizationId },
+        publisher: { "@id": organizationId },
+      },
     );
+  } else if (page && page.kind !== "about") {
+    graph.push({
+      "@type": "Service",
+      name: page.title,
+      description: page.description,
+      provider: { "@id": organizationId },
+      areaServed: { "@type": "Country", name: "Chile" },
+      availableChannel: {
+        "@type": "ServiceChannel",
+        serviceUrl: seo.canonical,
+        availableLanguage: ["Spanish", "English"],
+      },
+    });
   }
 
   if (faqItems.length) {
@@ -1233,7 +1298,15 @@ function Header({
   return (
     <header className="site-header">
       <a className="brand" href={homePath} aria-label="IMR Tech home">
-        <img className="brand-logo" src="/images/logo-wordmark.png" alt="" aria-hidden="true" />
+        <img
+          className="brand-logo"
+          src="/images/logo-wordmark.png"
+          alt=""
+          aria-hidden="true"
+          width="1200"
+          height="497"
+          decoding="async"
+        />
       </a>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -1339,6 +1412,9 @@ function Hero({ t }) {
         <img
           src="/images/hero-ai-implementation.jpg"
           alt="AI implementation dashboard in a modern office"
+          width="512"
+          height="279"
+          fetchPriority="high"
         />
       </div>
     </section>
@@ -1505,6 +1581,9 @@ function ComparisonCard({ title, items, featured = false }) {
 function Services({ t, language, activeService, setActiveService }) {
   const service = t.services.tabs[activeService];
   const servicePage = getServicePage(language, activeService);
+  const servicePages = sitePages.filter(
+    (page) => page.language === language && page.kind === "service",
+  );
   return (
     <section className="section-shell services" id="services">
       <SectionIntro label={t.services.label} title={t.services.title} body={t.services.body} />
@@ -1518,7 +1597,7 @@ function Services({ t, language, activeService, setActiveService }) {
             className={activeService === index ? "active" : ""}
             onClick={() => setActiveService(index)}
           >
-            {index === 0 ? <Sparkles size={18} /> : index === 1 ? <Bot size={18} /> : <BarChart3 size={18} />}
+            {index === 0 ? <Sparkles size={18} /> : index === 2 ? <BarChart3 size={18} /> : <Bot size={18} />}
             <span>{tab.title}</span>
           </button>
         ))}
@@ -1540,8 +1619,25 @@ function Services({ t, language, activeService, setActiveService }) {
             <ArrowRight size={17} />
           </a>
         </div>
-        <img src={service.image} alt={service.alt} />
+        <img
+          src={service.image}
+          alt={service.alt}
+          width={service.width}
+          height={service.height}
+          loading="lazy"
+          decoding="async"
+        />
       </article>
+      <nav
+        className="service-page-links"
+        aria-label={language === "es" ? "Páginas de servicios" : "Service pages"}
+      >
+        {servicePages.map((page) => (
+          <a href={page.path} key={page.path}>
+            {page.title}
+          </a>
+        ))}
+      </nav>
     </section>
   );
 }
@@ -1670,8 +1766,12 @@ function Founder({ t }) {
         </div>
       </div>
       <img
-        src="/images/David%20Clerc%20Entrepreneur%20Traje%20Pro.png"
+        src="/images/David%20Entrepreneur%20Pro%20traje.webp"
         alt="IMR Tech leadership portrait"
+        width="1440"
+        height="1440"
+        loading="lazy"
+        decoding="async"
       />
     </section>
   );
@@ -1906,6 +2006,149 @@ function Faq({ t, openFaq, setOpenFaq }) {
   );
 }
 
+function AboutPage({ page }) {
+  const isSpanish = page.language === "es";
+  const homePath = isSpanish ? "/es/" : "/en/";
+  const homeLabel = isSpanish ? "Inicio" : "Home";
+  const services = [0, 1, 2].map((index) => getServicePage(page.language, index)).filter(Boolean);
+
+  return (
+    <article className="content-page about-page">
+      <div className="section-shell content-hero">
+        <nav className="breadcrumbs" aria-label={isSpanish ? "Migas de pan" : "Breadcrumbs"}>
+          <a href={homePath}>{homeLabel}</a>
+          <ArrowRight size={14} />
+          <span>{page.title}</span>
+        </nav>
+        <div className="content-hero-grid">
+          <div>
+            <h1>{page.title}</h1>
+            <p className="content-lead">{page.intro}</p>
+            <div className="hero-actions">
+              <a className="primary-button" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
+                {page.contact}
+                <ArrowRight size={17} />
+              </a>
+              <a className="secondary-button" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+                <Linkedin size={17} />
+                LinkedIn
+              </a>
+            </div>
+          </div>
+          <aside className="audience-panel">
+            <Globe2 size={26} />
+            <h2>{page.locationTitle}</h2>
+            <p>{page.locationBody}</p>
+          </aside>
+        </div>
+      </div>
+
+      <section className="content-band">
+        <div className="section-shell content-split about-copy">
+          <div>
+            <h2>{page.purposeTitle}</h2>
+            <p>{page.purposeBody}</p>
+          </div>
+          <div>
+            <h2>{page.approachTitle}</h2>
+            <p>{page.approachBody}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell evidence-section">
+        <div className="content-section-heading">
+          <span>IMR Tech</span>
+          <h2>{page.leadershipTitle}</h2>
+        </div>
+        <article className="evidence-feature about-leadership">
+          <div>
+            <img
+              className="about-leadership-image"
+              src="/images/David%20Entrepreneur%20Pro%20traje.webp"
+              alt={isSpanish ? "David Clerc, líder de IMR Tech" : "David Clerc, IMR Tech leader"}
+              width="1440"
+              height="1440"
+              loading="lazy"
+              decoding="async"
+            />
+            <p>{page.leadershipBody}</p>
+            <a className="text-link" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+              {isSpanish ? "Perfil oficial de IMR Tech" : "Official IMR Tech profile"}
+              <ArrowRight size={17} />
+            </a>
+          </div>
+          <div>
+            <h3>{page.factsTitle}</h3>
+            <dl className="evidence-list about-facts">
+              {page.facts.map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </article>
+      </section>
+
+      <section className="proof-band public-proof">
+        <div className="section-shell testimonial-policy">
+          <div>
+            <ShieldCheck size={28} />
+            <h2>{page.evidenceTitle}</h2>
+          </div>
+          <p>{page.evidenceBody}</p>
+        </div>
+      </section>
+
+      <section className="section-shell related-section">
+        <div className="content-section-heading">
+          <h2>{page.servicesTitle}</h2>
+          <p>{page.servicesBody}</p>
+        </div>
+        <div className="related-grid">
+          {services.map((service) => (
+            <a href={service.path} key={service.path}>
+              <span>{isSpanish ? "Servicio" : "Service"}</span>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <ArrowRight size={18} />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="content-band about-principles">
+        <div className="section-shell">
+          <div className="content-section-heading">
+            <h2>{page.principlesTitle}</h2>
+          </div>
+          <ul className="content-checklist about-principles-list">
+            {page.principles.map((principle) => (
+              <li key={principle}>
+                <CheckCircle2 size={19} />
+                <span>{principle}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="contact-band content-cta">
+        <div className="section-shell">
+          <h2>{page.ctaTitle}</h2>
+          <p>{page.ctaBody}</p>
+          <a className="primary-button" href={SCHEDULE_URL} target="_blank" rel="noreferrer">
+            {page.contact}
+            <ArrowRight size={17} />
+          </a>
+        </div>
+      </section>
+    </article>
+  );
+}
+
 function ContentPage({ page }) {
   const homePath = page.language === "es" ? "/es/" : "/en/";
   const homeLabel = page.language === "es" ? "Inicio" : "Home";
@@ -2106,13 +2349,28 @@ function LegalPage({ t, type, homePath, navigate }) {
 function Footer({ t, language }) {
   const privacyPath = language === "es" ? "/es/privacidad/" : "/en/privacy/";
   const legalPath = language === "es" ? "/es/legal/" : "/en/legal/";
+  const aboutPath = language === "es" ? "/es/sobre-nosotros/" : "/en/about-us/";
+  const agentsPath = language === "es"
+    ? "/es/servicios/agentes-ia-empresas/"
+    : "/en/services/enterprise-ai-agents/";
   const homePath = language === "es" ? "/es/" : "/en/";
   return (
     <footer className="footer">
       <a className="brand" href={homePath} aria-label="IMR Tech home">
-        <img className="brand-logo" src="/images/logo-wordmark.png" alt="" aria-hidden="true" />
+        <img
+          className="brand-logo"
+          src="/images/logo-wordmark.png"
+          alt=""
+          aria-hidden="true"
+          width="1200"
+          height="497"
+          loading="lazy"
+          decoding="async"
+        />
       </a>
       <div className="footer-links">
+        <a href={aboutPath}>{language === "es" ? "Sobre nosotros" : "About us"}</a>
+        <a href={agentsPath}>{language === "es" ? "Agentes de IA" : "AI agents"}</a>
         <a href={privacyPath}>{t.footer.privacy}</a>
         <a href={legalPath}>{t.footer.terms}</a>
         <a href={legalPath}>{t.footer.security}</a>
